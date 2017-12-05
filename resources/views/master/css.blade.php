@@ -10,3 +10,8 @@
     {!! Html::style('assets/dist/css/sb-admin-2.css') !!}
     <!--date-->
     {!! Html::style('assets/date/bootstrap-datepicker3.min.css') !!}
+
+    {!! HTML::style('css/hover-min.css') !!}
+    {!! HTML::style('css/animate.css') !!}
+
+    {!! HTML::style('css/style.css') !!}

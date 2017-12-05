@@ -1,0 +1,95 @@
+
+/* GENERAL */
+body {
+	background-color: #ffffff;
+	overflow-x: hidden;
+}
+
+.bg-white {
+	background-color: #ffffff;
+}
+
+.no-padding {
+	padding: 0px;
+}
+
+.margin-bot-0 {
+	margin-bottom: 0;
+}
+
+.fs-x-large {
+	font-size: x-large;
+}
+
+.fc-black {
+	color: #000000;
+}
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+}
+
+@media (max-width: 767px) { /* ALL MOBILE */
+    .btn-circle {
+        width: 20px;
+        height: 20px;
+        padding: 0px 0;
+        border-radius: 10px;
+        font-size: 10px;
+    }
+}
+@media (max-width: 991px) { /* RESOLUTION IPAD */
+}
+
+
+/* MASTER.INDEX */
+
+.mpsi-nav {
+    min-height: 85px !important;
+}
+
+a.mpsi-nav {
+	min-height: initial !important;
+}
+.mpsi-nav-menu {
+	margin-left: 20px;
+}
+
+
+@media (max-width: 767px) { /* ALL MOBILE */
+    .mpsi-nav-menu {
+		margin-left: 0;
+	}
+}
+@media (max-width: 991px) { /* RESOLUTION IPAD */
+
+}
+
+/* HOMEPAGE */
+
+.mpsi-right-carousel, .mpsi-left-carousel {
+	width: 4%;
+}
+
+.mpsi-animation-duration {
+	animation-duration: 400ms
+}
+#myCarousel > .carousel-inner img {
+	width: 100%;
+	object-fit: cover;
+	height: 680px;
+}
+
+
+@media (max-width: 767px) { /* ALL MOBILE */
+    
+}
+@media (max-width: 991px) { /* RESOLUTION IPAD */
+
+}
