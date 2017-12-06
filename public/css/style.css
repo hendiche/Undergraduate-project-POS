@@ -3,6 +3,8 @@
 body {
 	background-color: #ffffff;
 	overflow-x: hidden;
+	padding-top: 85px;
+	font-size: 16px;
 }
 
 .bg-white {
@@ -20,9 +22,19 @@ body {
 .fs-x-large {
 	font-size: x-large;
 }
+.fs-70 {
+	font-size: 70px;
+}
+.fs-45 {
+	font-size: 45px;
+}
 
 .fc-black {
 	color: #000000;
+}
+
+.cursor-pointer {
+	cursor: pointer;
 }
 
 .btn-circle {
@@ -49,7 +61,9 @@ body {
 
 
 /* MASTER.INDEX */
-
+nav.navbar.navbar-default.mpsi-nav {
+	box-shadow: 0 1px 10px 0px #d0cfcf;
+}
 .mpsi-nav {
     min-height: 85px !important;
 }
@@ -84,6 +98,35 @@ a.mpsi-nav {
 	width: 100%;
 	object-fit: cover;
 	height: 680px;
+}
+
+section#about {
+	padding: 20px 0;
+}
+
+#about-left > .row > div {
+	margin-bottom: 25px;
+}
+#about-left > .row  img {
+	width: 100%;
+	object-fit: cover;
+	box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.21);
+}
+#about-right > .text-center > p {
+	padding: 0px 12%;
+}
+.mpsi-hr::before, .mpsi-hr::after {
+	border-bottom: 1px solid #888888;
+	width: 25%;
+	content: "";
+	display: inline-block;
+	margin-bottom: 5px;
+}
+.mpsi-hr {
+	margin : 25px 0;
+}
+.mpsi-hr > i {
+	color: #12a61f;
 }
 
 

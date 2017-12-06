@@ -1,4 +1,11 @@
 @extends('master.index')
+@push('pageStyle')
+<style type="text/css">
+    .panel-heading.cursor-pointer.hvr-buzz-out {
+        display: block;
+    }
+</style>
+@endpush
 @section('content')
   <section>
     <div>
@@ -39,6 +46,72 @@
               </div>
             </div>
         </div>
+    </div>
+</section>
+<section id="about">
+    <div class="container">
+        <h1 class="text-center fs-70">ABOUT</h1>
+        <br/>
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12" id="about-left">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <img src="http://sariratu.sg/wp-content/uploads/2015/04/21.jpg" class="mpsi-popup-img hvr-grow" onclick="showPopupImg(this)">
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <img src="http://sariratu.sg/wp-content/uploads/2015/04/22.jpg" class="mpsi-popup-img hvr-grow" onclick="showPopupImg(this)">
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <img src="http://sariratu.sg/wp-content/uploads/2015/04/33.jpg" class="mpsi-popup-img hvr-grow" onclick="showPopupImg(this)">
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <img src="http://sariratu.sg/wp-content/uploads/2015/04/44.jpg" class="mpsi-popup-img hvr-grow" onclick="showPopupImg(this)">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12" id="about-right">
+                <div class="text-center">
+                    <h1 class="fs-45">Sari ratu is a Authentic NASI PADANG</h1>
+                    <div class="mpsi-hr">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                    <p>Nasi Padang is a Padang steamed rice served with various choices of pre-cooked dishes originated from Padang city, the capital of West Sumatra, Indonesia. Nasi Padang (Padang-style rice) is a miniature banquet of meats, fish, vegetables, and spicy sambals eaten with plain white rice, it is Sumatra’s most famous export and the Minangkabau’s great contribution to Indonesian cuisine.</p>
+                    <br />
+                    <br />
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                          <div class="panel-heading cursor-pointer hvr-buzz-out" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                            <h4 class="panel-title">Our Main Dish</h4>
+                          </div>
+                          <div id="collapse1" class="panel-collapse collapse">
+                            <div class="panel-body">OUR MAIN DISHES ARE NASI PUTIH,GULAI KAMBING,SOP BUNTUT,AYAM POP,AYAM BAKAR,IKAN MASIN,GULAI TELOR IKAN,IKAN NILA,IKAN BAWAL BAKAR,BABY KAILAN,UDANG PETAI,TELOR GULAI,SOP BUNTUT and etc….</div>
+                          </div>
+                        </div>
+                        <div class="panel panel-default">
+                          <div class="panel-heading cursor-pointer hvr-buzz-out" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                            <h4 class="panel-title">Parking Facilitis</h4>
+                          </div>
+                          <div id="collapse2" class="panel-collapse collapse">
+                            <div class="panel-body">Car Parking / 2 wheeler parking is Avilable for customers.</div>
+                          </div>
+                        </div>
+                        <div class="panel panel-default">
+                          <div class="panel-heading cursor-pointer hvr-buzz-out" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                            <h4 class="panel-title">Number Of Seats</h4>
+                          </div>
+                          <div id="collapse3" class="panel-collapse collapse">
+                            <div class="panel-body">We have Sit-In Capacity of 100 Pax.</div>
+                          </div>
+                        </div>
+                      </div> 
+                </div>
+            </div>
+        </div>
+        <br />
     </div>
 </section>
 @endsection
