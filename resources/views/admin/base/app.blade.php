@@ -159,7 +159,7 @@
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
-                    @include('shared.custom-error')
+                    {{-- @include('shared.custom-error') --}}
                     @yield('content')
                 <!-- .row -->
                 <!-- .right-sidebar -->

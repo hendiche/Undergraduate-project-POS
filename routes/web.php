@@ -12,6 +12,6 @@
 */
 Auth::routes();
 
-Route::get('/', function () {
-    return view('frontend.homepage');
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
+	Route::get('dashboard','AdminController@dashboard')->name('admin.dashboard');
 });

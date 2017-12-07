@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
-class DatabaseSeeder extends Seeder
+class RoleTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,8 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-	    $this->call(RoleTableSeeder::class);
-	    $this->call(UserTableSeeder::class);
-        
+        $role = Role::create(['name' => 'admin']);
     }
 }

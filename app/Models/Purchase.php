@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use app\Models\Base\BaseModel;
 use app\Models\User;
