@@ -11,10 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{url('/')}}/plugins/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{url('/')}}/images/snp.png">
     <title>{{ $title or 'Admin Panel' }}</title>
 
-
+    {!! Html::style('assets/vendor/font-awesome/css/font-awesome.min.css') !!}
     <link rel="stylesheet" href="{{url('/')}}/plugins/bower_components/html5-editor/bootstrap-wysihtml5.css" />
     <!-- Bootstrap Core CSS -->
     <link href="{{url('/')}}/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -99,7 +99,7 @@
                             {{-- <li><a href="javascript:void(0)"><i class="ti-user"></i> My Profile</a></li>
                             <li><a href="javascript:void(0)"><i class="ti-email"></i> Inbox</a></li>
                             <li><a href="javascript:void(0)"><i class="ti-settings"></i> Account Setting</a></li> --}}
-                            <li><a href="{{route('logout')}}"><i class="fa fa-power-off"></i> Logout</a></li>
+                            <li><a href="{{ Auth::logout() }}"><i class="fa fa-power-off"></i> Logout</a></li>
                         </ul>
                     </li>
                     <li class="nav-small-cap m-t-10">--- Main Menu</li>
@@ -159,7 +159,7 @@
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
-                    @include('shared.custom-error')
+                    {{-- @include('shared.custom-error') --}}
                     @yield('content')
                 <!-- .row -->
                 <!-- .right-sidebar -->
