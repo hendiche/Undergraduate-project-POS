@@ -103,8 +103,11 @@
                     <li><a href="#" class="hvr-underline-from-center"><h3>Contact</h3></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-top-links navbar-right">
+                    <li class="cart">
+                        <a href="#" class="hvr-pulse-grow"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                    </li>
                     @guest
-                        <li><a href="#" class="hvr-float-shadow"><h3 class="margin-bot-0">Login</h3></a></li>
+                        <li><a href="{{ route('login') }}" class="hvr-float-shadow"><h3 class="margin-bot-0">Login</h3></a></li>
                     @else
                     <li class="dropdown">
                         <a class="dropdown-toggle mpsi-nav" data-toggle="dropdown" href="#">
