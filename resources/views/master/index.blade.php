@@ -123,6 +123,9 @@
         </nav>
     </div>
     @yield('content')
+    <section id="footer" style="background: url({{ asset('images/footerbg.jpg') }}); height: 500px">
+        
+    </section>
     <div id="myImgModal" class="mpsi-modal-img" onclick="closePopupImg()">
         <span class="close" onclick="closePopupImg()">&times;</span>
         <img class="mpsi-modal-img-content text-center no-img-alt" id="content-img" alt="Image cannot be displayed">
