@@ -50,7 +50,7 @@
 </section>
 <section id="about">
     <div class="container">
-        <h1 class="text-center fs-70">ABOUT</h1>
+        <h1 class="text-center fs-45">ABOUT</h1>
         <br/>
         <div class="row">
             <div class="col-md-6 col-sm-12 col-xs-12" id="about-left">
@@ -71,7 +71,7 @@
             </div>
             <div class="col-md-6 col-sm-12 col-xs-12" id="about-right">
                 <div class="text-center">
-                    <h1 class="fs-45">Sari ratu is a Authentic NASI PADANG</h1>
+                    <h1 class="no-margin-top">Sari ratu is a Authentic NASI PADANG</h1>
                     <div class="mpsi-hr">
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
@@ -80,7 +80,6 @@
                         <i class="fa fa-star" aria-hidden="true"></i>
                     </div>
                     <p>Nasi Padang is a Padang steamed rice served with various choices of pre-cooked dishes originated from Padang city, the capital of West Sumatra, Indonesia. Nasi Padang (Padang-style rice) is a miniature banquet of meats, fish, vegetables, and spicy sambals eaten with plain white rice, it is Sumatra’s most famous export and the Minangkabau’s great contribution to Indonesian cuisine.</p>
-                    <br />
                     <br />
                     <div class="panel-group" id="accordion">
                         <div class="panel panel-default">
@@ -111,14 +110,66 @@
                 </div>
             </div>
         </div>
+        <button type="button" class="btn btn-success hvr-icon-wobble-horizontal mpsi-btn-more">MORE ABOUT US</button>
+    </div>
+</section>
+<section id="menu">
+    <div class="container-fluid">
+        <h1 class="text-center fs-45">MENU</h1>
         <br />
+        <div class="row">
+            @php
+            $menus = [[
+                    "img" => "http://sariratu.sg/wp-content/uploads/2015/04/Menu2.jpg",
+                    "name" => "Daging Cincang (Beef In Curry)",
+                    "price" => "20000"
+                ], 
+                [
+                    "img" => "http://sariratu.sg/wp-content/uploads/2015/04/Menu4.jpg",
+                    "name" => "Ikan Gulai (Fish in Curry)",
+                    "price" => "20000"
+                ],
+                [
+                    "img" => "http://sariratu.sg/wp-content/uploads/2015/04/Menu7.jpg",
+                    "name" => "Sambang Goreng",
+                    "price" => "20000"
+                ],
+                [
+                    "img" => "http://sariratu.sg/wp-content/uploads/2015/04/Menu21.jpg",
+                    "name" => "Sayur Nangka",
+                    "price" => "20000"
+                ]];
+            @endphp
+            @foreach($menus as $index => $menu)
+                <div class="col-md-3 col-sm-6 col-xs-12" id="menu-card">
+                    <div>
+                        <div class="image">
+                            <img src="{{ $menu['img'] }}" title="{{ $menu['name'] }}" />
+                        </div>
+                        <div class="description">
+                            <h4 class="no-margin-top">{{ $menu['name'] }}</h4>
+                            <p>bacot bacot bacot bacot bacot bacot bacot It is a long established fact that a reader</p>
+                            <h3 class="text-center">Rp{{ number_format($menu['price'], 2, ",", '.') }}</h3>
+                        </div>
+                        <div class="button-cart">
+                            <button class="hvr-overline-from-center">
+                                <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                                <span>Add to cart</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <button type="button" class="btn btn-success hvr-icon-wobble-horizontal mpsi-btn-more">MORE MENU</button>
     </div>
 </section>
 @endsection
 @push('pageScript')
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#myCarousel').mouseenter(function() {
+        $('#myCarousel')
+        .mouseenter(function() {
             $('.mpsi-left-carousel').addClass('animated fadeInLeft').css('display', 'block');
             $('.mpsi-right-carousel').addClass('animated fadeInRight').css('display', 'block');
         })

@@ -164,6 +164,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -178,8 +179,6 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Yajra\Datatables\DatatablesServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
-
     ],
 
     /*
@@ -231,6 +230,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Datatables' => Yajra\Datatables\Datatables::class,
+        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
     ],
 
 ];
