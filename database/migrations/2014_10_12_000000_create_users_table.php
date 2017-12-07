@@ -47,6 +47,11 @@ class CreateUsersTable extends Migration
             $table->string('type');
             $table->string('number');
             $table->string('note');
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->integer('guest_id')->unsigned()->nullable();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('guest_id')->references('id')->on('guests');
             $table->timestamps();
         });
 
