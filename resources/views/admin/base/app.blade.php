@@ -28,6 +28,9 @@
     <!-- Custom CSS -->
     <link href="{{url('/')}}/css/admin-template/style.min.css" rel="stylesheet">
 
+    <!--dropify css-->
+    <link rel="stylesheet" href="{{url('/')}}/plugins/bower_components/dropify/dist/css/dropify.min.css">
+
     <link rel="stylesheet" type="text/css" href="{{url('/')}}/plugins/bower_components/datatables/jquery.dataTables.min.css" />
     <link href="{{url('/')}}/plugins/bower_components/custom-select/custom-select.css" rel="stylesheet" type="text/css" />
 
@@ -105,30 +108,11 @@
                     <li class="nav-small-cap m-t-10">--- Main Menu</li>
                     <li><a href="{{ route('user.index') }}" class="waves-effect"><i class="fa fa-users"></i> <span class="hide-menu">Users </span></a> </li>
                     <li><a href="javascript:void(0)" class="waves-effect"><i class="fa fa-users"></i> <span class="hide-menu">Teams </span></a> </li>
-                    <li><a href="javascript:void(0)" class="waves-effect"><i class="fa fa-users"></i> <span class="hide-menu">Academic Institution</span></a> </li>
-                    <li><a href="javascript:void(0)" class="waves-effect"><i class="fa fa-users"></i> <span class="hide-menu">NGB Information </span></a> </li>
                     <li>
                         <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-cog"></i> <span class="hide-menu"> Setting <span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li> <a href="{{ route('category.index') }}">Categories</a></li>
-                            <li> <a href="javascript:void(0)">Countries</a></li>
-                            <li> <a href="javascript:void(0)">States</a></li>
-                            <li> <a href="javascript:void(0)">Cities</a></li>
-                            <li> <a href="javascript:void(0)">User Role</a></li>
-                            <li> <a href="javascript:void(0)">Sports</a></li>
-                            <li> <a href="javascript:void(0)">Events</a></li>
-                            <li> <a href="javascript:void(0)">Match Days</a></li>
-                            <li> <a href="javascript:void(0)">Affiliations</a></li>
-                            <li> <a href="javascript:void(0)">Divisions</a></li>
-                            <li> <a href="javascript:void(0)">Conferences</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-cog"></i> <span class="hide-menu"> Team Setting <span class="fa arrow"></span></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li> <a href="javascript:void(0)">Team Level</a></li>
-                            <li> <a href="javascript:void(0)">Team Type</a></li>
-                            <li> <a href="javascript:void(0)">Team Leagues</a></li>
+                            <li> <a href="{{ route('slider.index') }}">Slider</a></li>
                         </ul>
                     </li>
                     {{-- <li>
@@ -214,6 +198,9 @@
 
     <!-- wysuhtml5 Plugin JavaScript -->
     <script src="{{url('/')}}/plugins/bower_components/tinymce/tinymce.min.js"></script>
+    <!-- jQuery file upload -->
+    <script src="{{ url('/') }}/plugins/bower_components/dropify/dist/js/dropify.min.js"></script>
+
     <!-- Google Maps -->
     <!-- <script src="{{url('/')}}/plugins/bower_components/gmaps/gmaps.min.js" type="text/javascript"></script>
     <script src="{{url('/')}}/plugins/bower_components/gmaps/jquery.gmaps.js" type="text/javascript"></script> -->
