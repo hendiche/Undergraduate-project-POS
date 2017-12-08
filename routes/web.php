@@ -20,9 +20,11 @@ Route::get('/logout','AdminController@logout');
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
 	Route::get('/dashboard','AdminController@dashboard')->name('admin.dashboard');
 	Route::resource('/user', 'UserController');
+	Route::resource('/category', 'CategoryController');
 
 
 	Route::group(['prefix' => 'datatable', 'middleware' => ['auth']], function () {
 		Route::post('/user', 'UserController@dataTable')->name('user.list');
+		Route::post('/category', 'CategoryController@dataTable')->name('category.list');
 	});
 });

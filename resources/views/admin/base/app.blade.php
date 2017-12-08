@@ -110,7 +110,7 @@
                     <li>
                         <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-cog"></i> <span class="hide-menu"> Setting <span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li> <a href="javascript:void(0)">User Informations</a></li>
+                            <li> <a href="{{ route('category.index') }}">Categories</a></li>
                             <li> <a href="javascript:void(0)">Countries</a></li>
                             <li> <a href="javascript:void(0)">States</a></li>
                             <li> <a href="javascript:void(0)">Cities</a></li>
