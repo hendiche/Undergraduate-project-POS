@@ -19,4 +19,10 @@ Route::get('/', function() {
 Route::get('/logout','AdminController@logout');
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
 	Route::get('/dashboard','AdminController@dashboard')->name('admin.dashboard');
+	Route::resource('/user', 'UserController');
+
+
+	Route::group(['prefix' => 'datatable', 'middleware' => ['auth']], function () {
+		Route::post('/user', 'UserController@dataTable')->name('user.list');
+	});
 });

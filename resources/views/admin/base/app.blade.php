@@ -99,11 +99,11 @@
                             {{-- <li><a href="javascript:void(0)"><i class="ti-user"></i> My Profile</a></li>
                             <li><a href="javascript:void(0)"><i class="ti-email"></i> Inbox</a></li>
                             <li><a href="javascript:void(0)"><i class="ti-settings"></i> Account Setting</a></li> --}}
-                            <li><a href="{{ Auth::logout() }}"><i class="fa fa-power-off"></i> Logout</a></li>
+                            {{-- <li><a href="{{ Auth::logout() }}"><i class="fa fa-power-off"></i> Logout</a></li> --}}
                         </ul>
                     </li>
                     <li class="nav-small-cap m-t-10">--- Main Menu</li>
-                    <li><a href="javascript:void(0)" class="waves-effect"><i class="fa fa-users"></i> <span class="hide-menu">Users </span></a> </li>
+                    <li><a href="{{ route('user.index') }}" class="waves-effect"><i class="fa fa-users"></i> <span class="hide-menu">Users </span></a> </li>
                     <li><a href="javascript:void(0)" class="waves-effect"><i class="fa fa-users"></i> <span class="hide-menu">Teams </span></a> </li>
                     <li><a href="javascript:void(0)" class="waves-effect"><i class="fa fa-users"></i> <span class="hide-menu">Academic Institution</span></a> </li>
                     <li><a href="javascript:void(0)" class="waves-effect"><i class="fa fa-users"></i> <span class="hide-menu">NGB Information </span></a> </li>
@@ -159,7 +159,7 @@
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
-                    {{-- @include('shared.custom-error') --}}
+                    @include('shared.custom-error')
                     @yield('content')
                 <!-- .row -->
                 <!-- .right-sidebar -->

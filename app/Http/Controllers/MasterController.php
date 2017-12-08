@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Helpers\SessionHelper;
 use Route;
-use Yajra\Datatables\Facades\Datatables;
+use Datatables;
 
 class MasterController extends Controller
 {
@@ -54,7 +54,7 @@ class MasterController extends Controller
 
     public function index()
     {
-        return $this->render(view($this->index_view));
+        return $this->render(view($this->show_view));
     }
 
     public function create()
