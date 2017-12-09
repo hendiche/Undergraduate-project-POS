@@ -207,7 +207,8 @@
 
     <script type="text/javascript">
       function deleteConfirmation(url) {
-          $('#delete_form').attr('action', url);
+            console.log('a');
+            $('#delete_form').attr('action', url);
       }
     </script>
     @stack('pageRelatedJs');

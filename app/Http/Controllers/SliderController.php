@@ -31,7 +31,7 @@ class SliderController extends MasterController
     	if (!$model) {
     		$model = new Slider();
     	}
-    	$model->cover = url('/image/'.$this->uploadFiles($request->cover,$model));
+    	$model->cover = url('/image/slider/'.$this->uploadFiles($request->cover,$model));
         if (!$model->save()) {
             return $this->sendErrorResponse($model->errors());
         }
@@ -79,9 +79,9 @@ class SliderController extends MasterController
         return $fileName;
     }
 
-    public function getFileByName($fileName)
+    public function getFileByName($pathName,$fileName)
     {
-        $path = Storage_path().'/app/slider/'.$fileName;
+        $path = Storage_path().'/app/'.$pathName.'/'.$fileName;
         return response()->file($path);
     }
     //end upload photo

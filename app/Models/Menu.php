@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use app\Models\Base\BaseModel;
-use app\Models\Food;
-use app\Models\Purchase;
+use App\Models\Base\BaseModel;
+use App\Models\Food;
+use App\Models\Purchase;
 use Illuminate\Database\Eloquent\Model;
 
 class Menu extends BaseModel
@@ -18,7 +18,7 @@ class Menu extends BaseModel
         'updated_at',
     ];
 
-    public function food() {
+    public function foods() {
     	return $this->belongsToMany(Food::class,'food_menus');
     }
 

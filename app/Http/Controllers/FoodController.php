@@ -53,7 +53,7 @@ class FoodController extends MasterController
     	$model->price = $request->price;
     	$model->category_id = $request->category;
     	$model->status = $request->status;
-    	$model->cover = url('/image/'.$this->uploadFiles($request->cover,$model));
+    	$model->cover = url('/image/food/'.$this->uploadFiles($request->cover,$model));
         if (!$model->save()) {
             return $this->sendErrorResponse($model->errors());
         }
@@ -66,7 +66,7 @@ class FoodController extends MasterController
     {
         if ($model) {
             if ($model->cover != '' || $model->cover) {
-                Storage::delete(Storage_path().'/app/slider/'.$model->cover);
+                Storage::delete(Storage_path().'/app/food/'.$model->cover);
             }
         }
     
@@ -76,7 +76,7 @@ class FoodController extends MasterController
 
     public function uploadHandler($file)
     {
-        $path = 'slider';
+        $path = 'food';
     
         if (!Storage::exists($path)) {
             Storage::makeDirectory($path);
