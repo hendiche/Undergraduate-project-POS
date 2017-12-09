@@ -22,7 +22,7 @@
     <link href="{{ url('/') }}/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
     <link href="{{ url('/') }}/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
     <link href="{{ url('/') }}/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-    {{-- <link href="{{ url('/') }}/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet"> --}}
+    <link href="{{ url('/') }}/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="{{ url('/') }}/build/css/custom.min.css" rel="stylesheet">
@@ -207,7 +207,7 @@
     <script src="{{ url('/') }}/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
     <script src="{{ url('/') }}/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="{{ url('/') }}/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-    {{-- <script src="{{ url('/') }}/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script> --}}
+    <script src="{{ url('/') }}/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
     <script src="{{ url('/') }}/vendors/jszip/dist/jszip.min.js"></script>
     <script src="{{ url('/') }}/vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="{{ url('/') }}/vendors/pdfmake/build/vfs_fonts.js"></script>
