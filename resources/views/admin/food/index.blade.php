@@ -1,33 +1,29 @@
-@extends('admin.base.app')
-@section('page_header','Foods')
-@section('create-button')
-    <a href="{{ route('food.create') }}" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline waves-effect waves-light">Add Food</a>
+@extends('admin.base.layout')
+@section('title')
+Foods
 @endsection
-@section('breadcrumblv2')
-  <li class="active">Categories</li>
+@section('add_button')
+    <a href="{{ route('food.create') }}" class="btn btn-round btn-info">Add Food</a>
+@endsection
+@section('top_title')
+Food Table
 @endsection
 @section('content')
+<table id="type-table" class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Cover</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Category</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+   </tbody>
+</table>
 
-<div class="row">
-  <div class="col-sm-12">
-    <div class="white-box">
-      <div class="table-responsive">
-        <table id="type-table" class="table table-striped">
-          <thead>
-            <tr>
-              <th>Cover</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Category</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
 @include('shared.delete-modal')
 @endsection
 

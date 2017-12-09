@@ -1,86 +1,78 @@
-@extends('admin.base.app')
-
+@extends('admin.base.layout')
+@section('title')
+Category
+@endsection
 @if(empty($model))
-    @section('page_header','Create Food')
+    @section('subtitle')
+    Create
+    @endsection
 @else
-    @section('page_header','Edit Food')
+    @section('subtitle')
+    Edit
+    @endsection
 @endif
-
-@section('breadcrumblv2')
-    @if(empty($model))
-        <li>Food</li>
-        <li class="active">Create</li>
-    @else
-        <li>Food</li>
-        <li class="active">Edit</li>
-    @endif
+@section('top_title')
+Category Form
 @endsection
 
 @section('content')
-<!-- .row -->
-<div class="row">
-    <div class="col-sm-12">
-        <div class="white-box p-l-20 p-r-20">
-            <div class="row">
-                <div class="col-md-12">
-                {!! Form::model($model, [
-                        'url' => $route,
-                        'method' => $method,
-                        'id' => 'remarkForm',
-                        'class' => 'form-material form-horizontal',
-                        'files' => true
-                    ]) !!}
-                        <div class="form-group">
-                            <label for="name" class="col-md-12">Cover</label>
-                            <div class="col-md-6">
-                              <input 
-                                type="file" 
-                                name="cover"
-                                id="input-file-disable-remove" 
-                                class="dropify" 
-                                data-show-remove="false" 
-                                data-max-file-size="100M"
-                                @if($model) 
-                                    @if($model->cover)  
-                                        data-default-file="{{ $model->cover }}"
-                                    @endif
-                                @endif
-                            /> 
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class="col-md-12">Name</label>
-                            <div class="col-md-12">
-                              {{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Name','required'=>'required']) }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class="col-md-12">Price</label>
-                            <div class="col-md-12">
-                              {{ Form::number('price', null, ['class' => 'form-control', 'placeholder' => 'Price','required'=>'required','min'=>'0']) }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class="col-md-12">Category</label>
-                            <div class="col-md-12">
-                              {{ Form::select('category', $category, $model ? $model->category_id : null, ['class' => 'form-control', 'placeholder' => 'Choose Category','required'=>'required']) }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class="col-md-12">Status</label>
-                            <div class="col-md-12">
-                              {{ Form::select('status', ['0'=>'inactive','1'=>'active'],null, ['class' => 'form-control', 'placeholder' => 'Choose Status','required'=>'required']) }}
-                            </div>
-                        </div>
-                        <div class="form-group text-right">
-                          <button class="btn btn-primary" type="submit">Submit</button>
-                        </div>
-                    {!! Form::close() !!}
-                </div>
-            </div>
+{!! Form::model($model, [
+        'url' => $route,
+        'method' => $method,
+        'id' => 'demo-form2',
+        'class' => 'form-horizontal form-label-left',
+        'files' => true,
+        'data-parsley-validate'
+    ]) !!}
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Cover</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+              <input 
+                    type="file" 
+                    name="cover"
+                    id="input-file-disable-remove" 
+                    class="dropify" 
+                    data-show-remove="false" 
+                    data-max-file-size="100M"
+                    @if($model) 
+                        @if($model->cover)  
+                            data-default-file="{{ $model->cover }}"
+                        @endif
+                    @endif
+                />
         </div>
     </div>
-</div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            {{ Form::text('name', null, ['class' => 'form-control col-md-7 col-xs-12', 'placeholder' => 'Name','required'=>'required']) }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Price</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+           {{ Form::number('price', null, ['class' => 'form-control col-md-7 col-xs-12', 'placeholder' => 'Price','required'=>'required','min'=>'0']) }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Category</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+           {{ Form::select('category', $category, $model ? $model->category_id : null, ['class' => 'form-control col-md-7 col-xs-12', 'placeholder' => 'Choose Category','required'=>'required']) }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Status</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+           {{ Form::select('status', ['0'=>'inactive','1'=>'active'],null, ['class' => 'form-control col-md-7 col-xs-12', 'placeholder' => 'Choose Status','required'=>'required']) }}
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+            <button type="submit" class="btn btn-success pull-right">Submit</button>
+        </div>
+    </div>
+{!! Form::close() !!}
+
 @endsection
 @push('pageRelatedJs')
       <script>

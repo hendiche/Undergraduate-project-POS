@@ -26,7 +26,6 @@ class Food extends BaseModel
     public function custom() {
     	return $this->belongsToMany(Custom::class);
     }
-`
     public function menu() {
     	return $this->belongsToMany(Menu::class);
     }
