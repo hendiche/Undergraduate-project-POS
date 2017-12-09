@@ -162,14 +162,26 @@
                 <div class="col-md-2 col-sm-2 col-xs-12 form-group pull-right top_search">
                   <div class="input-group">
                     @yield('add_button')
-                    <a href="#" class="btn btn-round btn-info">Info</a>
+                    {{-- <a href="#" class="btn btn-round btn-info">Info</a> --}}
                   </div>
                 </div>
               </div>
             </div>
 
             <div class="clearfix"></div>
-            @yield('content')
+            <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>@yield('top_title')</h2>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                   @yield('content')
+                </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <!-- /page content -->
@@ -211,7 +223,27 @@
     <script src="{{ url('/') }}/vendors/jszip/dist/jszip.min.js"></script>
     <script src="{{ url('/') }}/vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="{{ url('/') }}/vendors/pdfmake/build/vfs_fonts.js"></script>
-
+    <!-- bootstrap-daterangepicker -->
+    <script src="../vendors/moment/min/moment.min.js"></script>
+    <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap-wysiwyg -->
+    <script src="../vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+    <script src="../vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+    <script src="../vendors/google-code-prettify/src/prettify.js"></script>
+    <!-- jQuery Tags Input -->
+    <script src="../vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+    <!-- Switchery -->
+    <script src="../vendors/switchery/dist/switchery.min.js"></script>
+    <!-- Select2 -->
+    <script src="../vendors/select2/dist/js/select2.full.min.js"></script>
+    <!-- Parsley -->
+    <script src="../vendors/parsleyjs/dist/parsley.min.js"></script>
+    <!-- Autosize -->
+    <script src="../vendors/autosize/dist/autosize.min.js"></script>
+    <!-- jQuery autocomplete -->
+    <script src="../vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+    <!-- starrr -->
+    <script src="../vendors/starrr/dist/starrr.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="{{ url('/') }}/build/js/custom.min.js"></script>
     @stack('pageRelatedJs');
