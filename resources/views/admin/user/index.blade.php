@@ -1,4 +1,4 @@
-@extends('admin.base.app')
+@extends('admin.base.layout')
 @section('page_header','Users')
 @section('create-button')
     <a href="{{ route('user.create') }}" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline waves-effect waves-light">Add User</a>
@@ -9,10 +9,14 @@
 @section('content')
 
 <div class="row">
-  <div class="col-sm-12">
-    <div class="white-box">
-      <div class="table-responsive">
-        <table id="type-table" class="table table-striped">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Users Table</h2>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <table id="type-table" class="table table-striped table-bordered">
           <thead>
             <tr>
               <th>Name</th>
@@ -22,6 +26,8 @@
               <th>Action</th>
             </tr>
           </thead>
+          <tbody>
+           </tbody>
         </table>
       </div>
     </div>

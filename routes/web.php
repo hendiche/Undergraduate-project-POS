@@ -23,11 +23,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
 	Route::resource('/user', 'UserController');
 	Route::resource('/category', 'CategoryController');
 	Route::resource('/slider', 'SliderController');
+	Route::resource('/food', 'FoodController');
 
 
 	Route::group(['prefix' => 'datatable', 'middleware' => ['auth']], function () {
 		Route::post('/user', 'UserController@dataTable')->name('user.list');
 		Route::post('/category', 'CategoryController@dataTable')->name('category.list');
 		Route::post('/slider', 'SliderController@dataTable')->name('slider.list');
+		Route::post('/food', 'FoodController@dataTable')->name('food.list');
 	});
 });
