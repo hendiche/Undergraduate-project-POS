@@ -82,50 +82,87 @@
     @stack('pageStyle')
 </head>
 <body id="body">
-    <div id="wrapper">
-        <nav class="navbar navbar-default navbar-fixed-top mpsi-nav bg-white" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header mpsi-nav">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand hvr-pop" href="#">
-                    <img src="http://sariratu.sg/wp-content/themes/twentyfourteen/img/small-logo.png">
-                </a>
-            </div>
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <ul class="nav navbar-nav mpsi-nav-menu">
-                    <li><a href="#" class="hvr-underline-from-center"><h3>Home</h3></a></li>
-                    <li><a href="#" class="hvr-underline-from-center"><h3>About</h3></a></li>
-                    <li><a href="#" class="hvr-underline-from-center"><h3>Menu</h3></a></li>
-                    <li><a href="#" class="hvr-underline-from-center"><h3>Contact</h3></a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-top-links navbar-right">
-                    <li class="cart">
-                        <a href="#" class="hvr-pulse-grow"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-                    </li>
-                    @guest
-                        <li><a href="{{ route('login') }}" class="hvr-float-shadow"><h3 class="margin-bot-0">Login</h3></a></li>
-                    @else
-                    <li class="dropdown">
-                        <a class="dropdown-toggle mpsi-nav" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user fa-fw fs-x-large"></i><i class="fa fa-caret-down fs-x-large"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href=""><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
-                        </ul>
-                    </li>
-                    @endguest
-                </ul>
-            </div>
-        </nav>
+    <div class="mpsi-loading-page">
+        <div class="mpsi-center-page">
+            <div id="loader"></div>
+        </div>
     </div>
-    @yield('content')
-    <section id="footer" style="background: url({{ asset('images/footerbg.jpg') }}); height: 500px">
-        
-    </section>
+    <div class="mpsi-page" style="display: none;">
+        <div id="wrapper">
+            <nav class="navbar navbar-default navbar-fixed-top mpsi-nav bg-white" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header mpsi-nav">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand hvr-pop" href="#">
+                        <img src="http://sariratu.sg/wp-content/themes/twentyfourteen/img/small-logo.png">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                    <ul class="nav navbar-nav mpsi-nav-menu">
+                        <li><a href="#" class="hvr-underline-from-center"><h3>Home</h3></a></li>
+                        <li><a href="#" class="hvr-underline-from-center"><h3>About</h3></a></li>
+                        <li><a href="#" class="hvr-underline-from-center"><h3>Menu</h3></a></li>
+                        <li><a href="#" class="hvr-underline-from-center"><h3>Contact</h3></a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-top-links navbar-right">
+                        <li class="cart">
+                            <a href="#" class="hvr-pulse-grow"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                        </li>
+                        @guest
+                            <li><a href="{{ route('login') }}" class="hvr-float-shadow"><h3 class="margin-bot-0">Login</h3></a></li>
+                        @else
+                        <li class="dropdown">
+                            <a class="dropdown-toggle mpsi-nav" data-toggle="dropdown" href="#">
+                                <i class="fa fa-user fa-fw fs-x-large"></i><i class="fa fa-caret-down fs-x-large"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href=""><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                            </ul>
+                        </li>
+                        @endguest
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        @yield('content')
+        <section id="footer" style="background: url({{ asset('images/footerbg.jpg') }});">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12 col-md-offset-1">
+                        <h2>Sari Ratu Restaurant</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu nulla, feugiat at lectus nec, tempor accumsan metus. Vivamus tempus, diam sit amet condimentum pretium, metus magna ornare lectus, ut interdum lorem orci vitae purus. Etiam eleifend vulputate sapien at porta</p>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <h2>Our Locations</h2>
+                        <div class="mpsi-footer-subtitle">Singapore</div> <!-- ref: https://netdna.webdesignerdepot.com/uploads/dark_web_design/color.jpg -->
+                        <p>
+                            #20 Pahang Street,<br/>
+                            Singapore 198617.<br/>
+                            Telp: +65 6294 9983.<br/>
+                            Fax: +65 6294 9913<br/>
+                            <br/>
+                            304, orchard Road.<br/>
+                            #02-107 Lucky Plaze,<br/>
+                            Singapore.<br/>
+                            Telp: +55 6294 9983.<br/>
+                        </p>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <h2>Opening Hours</h2>
+                        <div class="mpsi-footer-subtitle">Everyday</div>
+                        <p>10:00 AM - 09:00 PM</p>
+                    </div>
+                </div>
+                <div class="text-center copyright">
+                    <h4>&copy; 2017 SARI RATU, ALL RIGHTS RESERVED.</h4>
+                </div>
+            </div>
+        </section>
+    </div> <!-- CLOSE MPSI PAGE -->
     <div id="myImgModal" class="mpsi-modal-img" onclick="closePopupImg()">
         <span class="close" onclick="closePopupImg()">&times;</span>
         <img class="mpsi-modal-img-content text-center no-img-alt" id="content-img" alt="Image cannot be displayed">

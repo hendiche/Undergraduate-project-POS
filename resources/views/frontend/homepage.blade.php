@@ -168,6 +168,10 @@
 @push('pageScript')
 <script type="text/javascript">
     $(document).ready(function() {
+        $('.mpsi-loading-page').css('display', 'none');
+        $('.mpsi-page').css('display', 'block');
+        $('.mpsi-page').addClass('mpsi-page-animation');
+        
         $('#myCarousel')
         .mouseenter(function() {
             $('.mpsi-left-carousel').addClass('animated fadeInLeft').css('display', 'block');

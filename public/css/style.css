@@ -38,9 +38,16 @@ body {
 }
 
 .hvr-underline-from-center::before, .hvr-overline-from-center::before {
-	background: #12a61f
+	background: #12a61f;
 }
 
+.triangle-right {
+	width: 0;
+	height: 0;
+	border-top: 25px solid transparent;
+	border-left: 50px solid #12a61f;
+	border-bottom: 25px solid transparent;
+}
 .btn-circle {
     width: 30px;
     height: 30px;
@@ -85,11 +92,80 @@ a.mpsi-nav {
 .cart > a > i {
 	font-size: xx-large;
 }
+#footer {
+	color: #ffffff;
+}
+#footer div.col-md-4 p {
+	padding-right: 20%;
+}
+.mpsi-footer-subtitle {
+	font-size: 21px;
+	color: #F8512F;
+}
+#footer .copyright {
+	margin-top: 8%;
+}
+.mpsi-center-page
+{
+    background-color:black;
+    position:absolute;
+    left:50%;
+    top:50%;
+}
+.mpsi-page-animation {
+	-webkit-animation-name: fadein;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-fill-mode: both;
+    animation-name: fadein;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+}
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #12a61f;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@-webkit-keyframes fadein {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadein {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
 
 
 @media (max-width: 767px) { /* ALL MOBILE */
     .mpsi-nav-menu {
 		margin-left: 0;
+	}
+	#footer div.row {
+		text-align: center;
+	}
+	#footer div.col-md-4 p {
+		padding: 0 10px;
 	}
 }
 @media (max-width: 991px) { /* RESOLUTION IPAD */
@@ -111,7 +187,7 @@ a.mpsi-nav {
 	height: 680px;
 }
 
-section#about, section#menu {
+section#about, section#menu, section#footer > div {
 	padding: 40px 0;
 }
 .mpsi-btn-more {
