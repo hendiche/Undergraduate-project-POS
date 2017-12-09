@@ -1,62 +1,54 @@
-@extends('admin.base.app')
+@extends('admin.base.layout')
 
+@section('title')
+Slider
+@endsection
 @if(empty($model))
-    @section('page_header','Create Slide')
+    @section('subtitle')
+    Create
+    @endsection
 @else
-    @section('page_header','Edit Slide')
+    @section('subtitle')
+    Edit
+    @endsection
 @endif
-
-@section('breadcrumblv2')
-    @if(empty($model))
-        <li>Slider</li>
-        <li class="active">Create</li>
-    @else
-        <li>Slider</li>
-        <li class="active">Edit</li>
-    @endif
+@section('top_title')
+Slider Form
 @endsection
 
 @section('content')
-<!-- .row -->
-<div class="row">
-    <div class="col-sm-12">
-        <div class="white-box p-l-20 p-r-20">
-            <div class="row">
-                <div class="col-md-12">
-                {!! Form::model($model, [
-                        'url' => $route,
-                        'method' => $method,
-                        'id' => 'remarkForm',
-                        'class' => 'form-material form-horizontal',
-                        'files' => true
-                    ]) !!}
-                        <div class="form-group">
-                            <label for="name" class="col-md-12">Cover</label>
-                            <div class="col-md-6">
-                              <input 
-                                type="file" 
-                                name="cover"
-                                id="input-file-disable-remove" 
-                                class="dropify" 
-                                data-show-remove="false" 
-                                data-max-file-size="100M"
-                                @if($model) 
-                                    @if($model->cover)  
-                                        data-default-file="{{ $model->cover }}"
-                                    @endif
-                                @endif
-                            /> 
-                            </div>
-                        </div>
-                        <div class="form-group text-right">
-                          <button class="btn btn-primary" type="submit">Submit</button>
-                        </div>
-                    {!! Form::close() !!}
-                </div>
-            </div>
+{!! Form::model($model, [
+        'url' => $route,
+        'method' => $method,
+        'id' => 'demo-form2',
+        'class' => 'form-horizontal form-label-left',
+        'files' => true,
+        'data-parsley-validate'
+    ]) !!}
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Cover</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+             <input 
+                type="file" 
+                name="cover"
+                id="input-file-disable-remove" 
+                class="dropify" 
+                data-show-remove="false" 
+                data-max-file-size="100M"
+                @if($model) 
+                    @if($model->cover)  
+                        data-default-file="{{ $model->cover }}"
+                    @endif
+                @endif
+            /> 
         </div>
     </div>
-</div>
+    <div class="form-group">
+        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+            <button type="submit" class="btn btn-success pull-right">Submit</button>
+        </div>
+    </div>
+{!! Form::close() !!}
 @endsection
 @push('pageRelatedJs')
 

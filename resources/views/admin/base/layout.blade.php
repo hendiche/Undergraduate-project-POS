@@ -34,6 +34,8 @@
     <link href="{{ url('/') }}/vendors/starrr/dist/starrr.css" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
     <link href="{{ url('/') }}/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!--dropify css-->
+    <link rel="stylesheet" href="{{url('/')}}/plugins/bower_components/dropify/dist/css/dropify.min.css">
     <!-- Custom Theme Style -->
     <link href="{{ url('/') }}/build/css/custom.min.css" rel="stylesheet">
   </head>
@@ -253,6 +255,8 @@
     <script src="{{ url('/') }}/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
     <!-- starrr -->
     <script src="{{ url('/') }}/vendors/starrr/dist/starrr.js"></script>
+    <!-- jQuery file upload -->
+    <script src="{{ url('/') }}/plugins/bower_components/dropify/dist/js/dropify.min.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="{{ url('/') }}/build/js/custom.min.js"></script>
     @stack('pageRelatedJs');

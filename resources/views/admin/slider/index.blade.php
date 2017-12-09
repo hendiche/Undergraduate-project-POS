@@ -1,29 +1,25 @@
-@extends('admin.base.app')
-@section('page_header','Sliders')
-@section('create-button')
-    <a href="{{ route('slider.create') }}" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline waves-effect waves-light">Add Slider</a>
+@extends('admin.base.layout')
+@section('title')
+Sliders
 @endsection
-@section('breadcrumblv2')
-  <li class="active">Sliders</li>
+@section('add_button')
+    <a href="{{ route('slider.create') }}" class="btn btn-round btn-info">Add Slider</a>
+@endsection
+@section('top_title')
+Slider Table
 @endsection
 @section('content')
+<table id="type-table" class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Cover</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+   </tbody>
+</table>
 
-<div class="row">
-  <div class="col-sm-12">
-    <div class="white-box">
-      <div class="table-responsive">
-        <table id="type-table" class="table table-striped">
-          <thead>
-            <tr>
-              <th>Cover</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
 @include('shared.delete-modal')
 @endsection
 
