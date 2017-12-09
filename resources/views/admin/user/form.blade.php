@@ -12,7 +12,7 @@ User
     @endsection
 @endif
 @section('top_title')
-Create User
+User Form
 @endsection
 
 @section('content')
@@ -21,9 +21,10 @@ Create User
 {!! Form::model($model, [
         'url' => $route,
         'method' => $method,
-        'id' => 'remarkForm',
+        'id' => 'demo-form2',
         'class' => 'form-horizontal form-label-left',
-        'files' => true
+        'files' => true,
+        'data-parsley-validate'
     ]) !!}
     <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name</label>
@@ -58,20 +59,28 @@ Create User
                     "1"=>"user"
                 ],
                 null,
-                ['class' => 'form-control col-md-7 col-xs-12'])
+                ['class' => 'form-control col-md-7 col-xs-12','placeholder'=>'Select Role','required'])
             }}
         </div>
     </div>
     <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Password</label>
         <div class="col-md-6 col-sm-6 col-xs-12">
+            @if($model)
             {{ Form::password('password', ['class' => 'form-control col-md-7 col-xs-12', 'placeholder' => 'User Password']) }}
+            @else
+            {{ Form::password('password', ['class' => 'form-control col-md-7 col-xs-12', 'placeholder' => 'User Password','required'=>'required']) }}
+            @endif
         </div>
     </div>
     <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Confirm Password</label>
         <div class="col-md-6 col-sm-6 col-xs-12">
+            @if($model)
             {{ Form::password('confirm_new_password', ['class' => 'form-control col-md-7 col-xs-12', 'placeholder' => 'Confirm Password']) }}
+            @else
+            {{ Form::password('confirm_new_password', ['class' => 'form-control col-md-7 col-xs-12', 'placeholder' => 'Confirm Password','required'=>'required']) }}
+            @endif
         </div>
     </div>
     <div class="form-group">

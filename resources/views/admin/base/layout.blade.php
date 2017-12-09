@@ -24,6 +24,16 @@
     <link href="{{ url('/') }}/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="{{ url('/') }}/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
+    <!-- bootstrap-wysiwyg -->
+    <link href="{{ url('/') }}/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="{{ url('/') }}/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="{{ url('/') }}/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+    <!-- starrr -->
+    <link href="{{ url('/') }}/vendors/starrr/dist/starrr.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="{{ url('/') }}/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="{{ url('/') }}/build/css/custom.min.css" rel="stylesheet">
   </head>
@@ -170,18 +180,17 @@
 
             <div class="clearfix"></div>
             <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="x_panel">
-                <div class="x_title">
-                  <h2>@yield('top_title')</h2>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                   @yield('content')
-                </div>
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>@yield('top_title')</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                     @yield('content')
+                  </div>
                 </div>
               </div>
-            </div>
           </div>
         </div>
         <!-- /page content -->
@@ -224,26 +233,26 @@
     <script src="{{ url('/') }}/vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="{{ url('/') }}/vendors/pdfmake/build/vfs_fonts.js"></script>
     <!-- bootstrap-daterangepicker -->
-    <script src="../vendors/moment/min/moment.min.js"></script>
-    <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="{{ url('/') }}/vendors/moment/min/moment.min.js"></script>
+    <script src="{{ url('/') }}/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
     <!-- bootstrap-wysiwyg -->
-    <script src="../vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
-    <script src="../vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
-    <script src="../vendors/google-code-prettify/src/prettify.js"></script>
+    <script src="{{ url('/') }}/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+    <script src="{{ url('/') }}/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+    <script src="{{ url('/') }}/vendors/google-code-prettify/src/prettify.js"></script>
     <!-- jQuery Tags Input -->
-    <script src="../vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+    <script src="{{ url('/') }}/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
     <!-- Switchery -->
-    <script src="../vendors/switchery/dist/switchery.min.js"></script>
+    <script src="{{ url('/') }}/vendors/switchery/dist/switchery.min.js"></script>
     <!-- Select2 -->
-    <script src="../vendors/select2/dist/js/select2.full.min.js"></script>
+    <script src="{{ url('/') }}/vendors/select2/dist/js/select2.full.min.js"></script>
     <!-- Parsley -->
-    <script src="../vendors/parsleyjs/dist/parsley.min.js"></script>
+    <script src="{{ url('/') }}/vendors/parsleyjs/dist/parsley.min.js"></script>
     <!-- Autosize -->
-    <script src="../vendors/autosize/dist/autosize.min.js"></script>
+    <script src="{{ url('/') }}/vendors/autosize/dist/autosize.min.js"></script>
     <!-- jQuery autocomplete -->
-    <script src="../vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+    <script src="{{ url('/') }}/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
     <!-- starrr -->
-    <script src="../vendors/starrr/dist/starrr.js"></script>
+    <script src="{{ url('/') }}/vendors/starrr/dist/starrr.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="{{ url('/') }}/build/js/custom.min.js"></script>
     @stack('pageRelatedJs');
