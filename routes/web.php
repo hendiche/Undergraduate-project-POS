@@ -32,7 +32,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
 	Route::resource('/slider', 'SliderController');
 	Route::resource('/food', 'FoodController');
 	Route::resource('/menu', 'MenuController');
-
+	Route::resource('/guest', 'GuestController');
 
 	Route::group(['prefix' => 'datatable', 'middleware' => ['auth']], function () {
 		Route::post('/user', 'UserController@dataTable')->name('user.list');
@@ -40,5 +40,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
 		Route::post('/slider', 'SliderController@dataTable')->name('slider.list');
 		Route::post('/food', 'FoodController@dataTable')->name('food.list');
 		Route::post('/menu', 'MenuController@dataTable')->name('menu.list');
+		Route::post('/guest', 'GuestController@dataTable')->name('guest.list');
 	});
 });

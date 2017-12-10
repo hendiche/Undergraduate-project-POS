@@ -7,6 +7,7 @@ use App\Models\Slider;
 use App\Models\Category;
 use App\Models\Food;
 use App\Models\Menu;
+use App\Models\Guest;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -36,6 +37,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('slider', Slider::class);
         Route::model('food', Food::class);
         Route::model('menu', Menu::class);
+        Route::model('guest', Guest::class);
     }
 
     /**

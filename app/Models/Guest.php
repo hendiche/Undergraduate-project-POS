@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Guest extends BaseModel
 {
     protected $fillable = [
-    	'name'
+    	'name','phone','address'
     ];
 
     protected $dates = [
