@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\MasterController;
 use App\Models\Food;
 use App\Models\Menu;
+use App\Helpers\Enums\StatusEnum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -58,7 +59,20 @@ class MenuController extends MasterController
             ->editColumn('cover', function ($model) {
             	return '<img src="'.$model->cover.'" style="height:200px;"/>';
             })
-            ->rawColumns(['action', 'cover'])
+            ->editColumn('status', function ($model) {
+                if ($model->status == 0) {
+                    return '<p style="color:red">'.StatusEnum::getString($model->status).'</p>';
+                } 
+                return '<p style="color:green">'.StatusEnum::getString($model->status).'</p>';
+            })
+            ->addColumn('foods', function($model) {
+                $foods = '';
+                foreach ($model->foods()->get() as $key => $value) {
+                    $foods .= '<p> -'.$value->name.'</p>';
+                }
+                return $foods;
+            })
+            ->rawColumns(['action', 'cover','foods','status'])
             ->make(true);
     }
 

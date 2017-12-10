@@ -16,6 +16,7 @@ Menu Table
       <th>Price</th>
       <th>Status</th>
       <th>Cover</th>
+      <th>Foods</th>
       <th>Description</th>
       <th>Action</th>
     </tr>
@@ -49,6 +50,7 @@ Menu Table
             { data: 'price' , name: 'price'},
             { data: 'status' , name: 'status'},
             { data: 'cover' , name: 'cover'},
+            { data: 'foods' , name: 'foods', orderable: false, searchable: false },
             { data: 'description' , name: 'description'},
             { data: 'action', name: 'action', orderable: false, searchable: false },
 

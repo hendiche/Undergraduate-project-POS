@@ -61,7 +61,6 @@ class SliderController extends MasterController
         }
     
         return $this->uploadHandler($file);
-
     }
 
     public function uploadHandler($file)

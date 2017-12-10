@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use app\Models\Base\BaseModel;
-use app\Models\Food;
+use App\Models\Base\BaseModel;
+use App\Models\Food;
 use Illuminate\Database\Eloquent\Model;
 
 class Custom extends BaseModel

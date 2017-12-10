@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use app\Models\Base\BaseModel;
-use app\Models\Purchase;
+use App\Models\Base\BaseModel;
+use App\Models\Purchase;
 use Illuminate\Database\Eloquent\Model;
 
 class Guest extends BaseModel
