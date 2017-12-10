@@ -14,7 +14,14 @@ Auth::routes();
 
 Route::get('/', function() {
 	return view('frontend.homepage');
-});
+})->name('frontend.home');
+
+Route::get('/product/{id}', 'frontendController@toDetails')->name('frontend.product');
+Route::get('/cartlist', 'frontendController@cartList')->name('frontend.cartlist');
+
+Route::post('/cart', 'frontendController@addToCart')->name('frontend.add_to_cart');
+Route::get('/deleteItem/{rowId}', 'frontendController@removeCart')->name('frontend.remove_cart');
+Route::get('/checkout', 'frontendController@checkoutCart')->name('frontend.checkout');
 
 Route::get('/logout','AdminController@logout');
 Route::get('/image/{fileName}/{path}','SliderController@getFileByName');

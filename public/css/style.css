@@ -11,6 +11,9 @@ body {
 	background-color: #ffffff;
 }
 
+.no-border-radius {
+	border-radius: 0;
+}
 .no-padding {
 	padding: 0px;
 }
@@ -91,6 +94,9 @@ a.mpsi-nav {
 }
 .cart > a > i {
 	font-size: xx-large;
+}
+.cart > a > span {
+	font-size: x-large;
 }
 #footer {
 	color: #ffffff;
@@ -261,7 +267,7 @@ section#about, section#menu, section#footer > div {
 #menu-card .button-cart {
 	border-top: 1px solid #ddd;
 }
-#menu-card .button-cart button {
+#menu-card .button-cart a {
 	width: 100%;
 	border: none;
 	display: inline-block;
@@ -271,8 +277,9 @@ section#about, section#menu, section#footer > div {
 	text-align: center;
 	text-transform: uppercase;
 	padding: 10px 6px;
+	border-radius: 0;
 }
-#menu-card .button-cart button i {
+#menu-card .button-cart a i {
 	font-size: larger;
 }
 
@@ -282,4 +289,75 @@ section#about, section#menu, section#footer > div {
 }
 @media (max-width: 991px) { /* RESOLUTION IPAD */
 
+}
+
+/* ITEM DETAILS */
+#main-section .description .btn {
+	margin-bottom: 20px;
+}
+#suggest-section {
+
+}
+@media (max-width: 767px) { /* ALL MOBILE */
+    
+}
+@media (max-width: 991px) { /* RESOLUTION IPAD */
+
+}
+
+/* CART LIST */
+#cart-list table .row-total td {
+	padding-top: 20px;
+	border-top: 0px;
+}
+#cart-list table thead tr {
+	background-color: #12a61f;
+}
+#cart-list table thead td {
+	background-color: #12a61f;
+	border: 0;
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 18px;
+}
+#cart-list table tbody td {
+	vertical-align: middle;
+}
+#cart-list table tbody .image {
+	width: 200px;
+	padding-left: 0;
+}
+#cart-list table tbody .image img {
+	max-width: 200px;
+	max-height: 135px;
+}
+#cart-list table tbody .product {
+	font-size: 21px;
+	font-weight: bold;
+}
+#cart-list table tbody .qty .plus, #cart-list table tbody .qty .minus {
+	padding: 4px 8px;
+	background-color: #cccccc;
+}
+#cart-list table tbody .qty input {
+	width: 50px;
+	text-align: center;
+	border: 1px solid black;
+}
+#cart-list table tbody .subtotal div {
+	color: #12a61f;
+	font-weight: bold;
+	font-size: 21px;
+}
+#cart-list table tbody .delete a {
+	padding: 4px 8px;
+	background-color: #cccccc;
+	color: #ffffff;
+}
+#cart-list table tbody .row-total td {
+	font-size: 21px;
+	font-weight: bold;
+}
+#cart-list .checkout {
+	display: block;
 }

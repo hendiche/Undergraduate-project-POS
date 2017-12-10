@@ -97,20 +97,23 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand hvr-pop" href="#">
+                    <a class="navbar-brand hvr-pop" href="{{ route('frontend.home') }}">
                         <img src="http://sariratu.sg/wp-content/themes/twentyfourteen/img/small-logo.png">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <ul class="nav navbar-nav mpsi-nav-menu">
-                        <li><a href="#" class="hvr-underline-from-center"><h3>Home</h3></a></li>
+                        <li><a href="{{ route('frontend.home') }}" class="hvr-underline-from-center"><h3>Home</h3></a></li>
                         <li><a href="#" class="hvr-underline-from-center"><h3>About</h3></a></li>
                         <li><a href="#" class="hvr-underline-from-center"><h3>Menu</h3></a></li>
                         <li><a href="#" class="hvr-underline-from-center"><h3>Contact</h3></a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-top-links navbar-right">
                         <li class="cart">
-                            <a href="#" class="hvr-pulse-grow"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                            <a href="{{ route('frontend.cartlist') }}" class="hvr-pulse-grow">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                <span> {{ Cart::content()->count() }}</span>
+                            </a>
                         </li>
                         @guest
                             <li><a href="{{ route('login') }}" class="hvr-float-shadow"><h3 class="margin-bot-0">Login</h3></a></li>
@@ -167,6 +170,7 @@
         <span class="close" onclick="closePopupImg()">&times;</span>
         <img class="mpsi-modal-img-content text-center no-img-alt" id="content-img" alt="Image cannot be displayed">
     </div>
+    @stack('pageModal')
 
     @include('master.js')
     <script type="text/javascript">

@@ -120,21 +120,25 @@
         <div class="row">
             @php
             $menus = [[
+                    "id" => "1",
                     "img" => "http://sariratu.sg/wp-content/uploads/2015/04/Menu2.jpg",
                     "name" => "Daging Cincang (Beef In Curry)",
                     "price" => "20000"
                 ], 
                 [
+                    "id" => "2",
                     "img" => "http://sariratu.sg/wp-content/uploads/2015/04/Menu4.jpg",
                     "name" => "Ikan Gulai (Fish in Curry)",
                     "price" => "20000"
                 ],
                 [
+                    "id" => "3",
                     "img" => "http://sariratu.sg/wp-content/uploads/2015/04/Menu7.jpg",
                     "name" => "Sambang Goreng",
                     "price" => "20000"
                 ],
                 [
+                    "id" => "4",
                     "img" => "http://sariratu.sg/wp-content/uploads/2015/04/Menu21.jpg",
                     "name" => "Sayur Nangka",
                     "price" => "20000"
@@ -152,10 +156,10 @@
                             <h3 class="text-center">Rp{{ number_format($menu['price'], 2, ",", '.') }}</h3>
                         </div>
                         <div class="button-cart">
-                            <button class="hvr-overline-from-center">
+                            <a href="{{ route('frontend.product', ['id' => $menu['id']]) }}" class="btn btn-default hvr-overline-from-center">
                                 <i class="fa fa-cart-plus" aria-hidden="true"></i>
                                 <span>Add to cart</span>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
