@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use app\Models\Base\BaseModel;
-use app\Models\User;
-use app\Models\Menu;
-use app\Models\Custom;
-use app\Models\Guest;
+use App\Models\Base\BaseModel;
+use App\Models\User;
+use App\Models\Menu;
+use App\Models\Custom;
+use App\Models\Guest;
 use Illuminate\Database\Eloquent\Model;
 
 class Purchase extends BaseModel
