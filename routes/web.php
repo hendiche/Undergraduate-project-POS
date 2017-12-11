@@ -10,10 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Models\Slider;
 Auth::routes();
 
 Route::get('/', function() {
-	return view('frontend.homepage');
+	return view('frontend.homepage')->with('sliders',Slider::get());
 })->name('frontend.home');
 
 Route::get('/about',function(){
@@ -31,11 +32,13 @@ Route::get('/cartlist', 'frontendController@cartList')->name('frontend.cartlist'
 Route::post('/cart', 'frontendController@addToCart')->name('frontend.add_to_cart');
 Route::get('/deleteItem/{rowId}', 'frontendController@removeCart')->name('frontend.remove_cart');
 Route::get('/checkout', 'frontendController@checkoutCart')->name('frontend.checkout');
+Route::post('/updateCart', 'frontendController@updateCart')->name('frontend.update');
 
 Route::get('/logout','AdminController@logout');
 Route::get('/image/{fileName}/{path}','SliderController@getFileByName');
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
 	Route::get('/dashboard','AdminController@dashboard')->name('admin.dashboard');
+	Route::get('/purchase/mark/{model}','PurchaseController@changeStatus');
 	Route::resource('/user', 'UserController');
 	Route::resource('/category', 'CategoryController');
 	Route::resource('/slider', 'SliderController');

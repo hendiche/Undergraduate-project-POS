@@ -43,66 +43,70 @@ Purchase Form
     <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Number</label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-            <p class="form-control col-md-7 col-xs-12">1234567</p>
+            <p class="form-control col-md-7 col-xs-12">{{ $model->number }}</p>
         </div>
     </div>
     <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Customer</label>
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Status</label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-            <p class="form-control col-md-7 col-xs-12">{{ Auth::user()->name }}</p>
+            {!! $status !!}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Customer Name</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <p class="form-control col-md-7 col-xs-12">{{ $info->name }}</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Customer Phone</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <p class="form-control col-md-7 col-xs-12">{{ $info->phone }}</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Customer Address</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <p class="form-control col-md-7 col-xs-12">{{ $info->address }}</p>
         </div>
     </div>
 
     <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Foods</label>
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Customer Order</label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-           {{ Form::select('food[]', $food, null, ['class' => 'form-control col-md-7 col-xs-12', 'placeholder' => 'Choose Food','required'=>'required']) }}
+            <div class="form-control col-md-7 col-xs-12" style="height: auto;">
+                @foreach($menus as $menu)
+                <p>Menu {{$menu->name}} x {{$menu->pivot->quantity}}</p>
+                @endforeach
+                @foreach($customs as $custom)
+                <p>Custom no.{{$custom->id}} x {{$custom->pivot->quantity}}</p>
+                <ul>
+                    @foreach($custom->foods()->get() as $food)
+                    <li>{{$food->name}}</li>
+                    @endforeach
+                </ul>
+                @endforeach
+            </div>
+            
         </div>
-        <div id="food-select"></div>
-    </div>
-    <div class="form-group">
-        <a class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" href="javascript:void(0);" id="add-more">add more</a>
     </div>
 
     <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Menus</label>
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Total Price</label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-           {{ Form::select('menu[]', $menu, null, ['class' => 'form-control col-md-7 col-xs-12', 'placeholder' => 'Choose Menu','required'=>'required']) }}
+            <p class="form-control col-md-7 col-xs-12">Rp.{{ $model->total }}</p>
         </div>
-        <div id="menu-select"></div>
     </div>
-
     <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Note</label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-            {{ Form::textarea('note', null, ['size' => '30x5','class' => 'form-control col-md-7 col-xs-12','placeholder'=>'add description']) }}
+            {{ Form::textarea('note', null, ['size' => '30x5','class' => 'form-control col-md-7 col-xs-12','placeholder'=>'add description','readonly']) }}
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-            <button type="submit" class="btn btn-success pull-right">Submit</button>
+            <button type="submit" class="btn btn-success pull-right">Done</button>
         </div>
     </div>
 {!! Form::close() !!}
 @endsection
-@push('pageRelatedJs')
-    <script>
-        $(document).ready(function () {
-            var num = 1;
-            $('#add-more').click(function() {
-                num += 1;
-                $('#food-select').append(`<div id="food`+num+`"> <div  class="col-md-5 col-sm-5 col-xs-11 col-md-offset-3" style="margin-top:10px;">
-               {{ Form::select('food[]', $food, null, ['class' => 'form-control col-md-6 col-xs-11', 'placeholder' => 'Choose Food','required'=>'required']) }}
-                </div>
-                <button 
-                type="button" 
-                class="btn btn-circle btn-default col-md-1 col-sm-1 col-xs-1" 
-                style="margin-top:10px"
-                onclick="removeAppend('#food`+num+`')">&times;</button> </div>`);
-            });
-        });
-        function removeAppend(id) {
-            $(id).html('');
-        }
-    </script>
-@endpush

@@ -295,9 +295,16 @@ section#about, section#menu, section#footer > div {
 #main-section .description .btn {
 	margin-bottom: 20px;
 }
-#suggest-section {
-
+#main-section .description p {
+	padding-right: 25%;
+	font-size: 16px;
 }
+#suggest-section .container {
+	padding: 10px;
+	border: 1px solid #eee;
+	width: 100%;
+}
+
 @media (max-width: 767px) { /* ALL MOBILE */
     
 }
@@ -338,6 +345,7 @@ section#about, section#menu, section#footer > div {
 #cart-list table tbody .qty .plus, #cart-list table tbody .qty .minus {
 	padding: 4px 8px;
 	background-color: #cccccc;
+	cursor: pointer;
 }
 #cart-list table tbody .qty input {
 	width: 50px;

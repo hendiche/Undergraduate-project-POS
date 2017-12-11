@@ -69,23 +69,28 @@ Menu Form
     <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Status</label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-           {{ Form::select('status', ['0'=>'inactive','1'=>'active'],null, ['class' => 'form-control col-md-7 col-xs-12', 'placeholder' => 'Choose Status','required'=>'required']) }}
+           {{ Form::select('status', ['1'=>'active','0'=>'inactive'],null, ['class' => 'form-control col-md-7 col-xs-12','required'=>'required']) }}
         </div>
     </div>
     <div id="food-group">
         @if($model)
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Foods</label>
+            
+            <div class="row">
+                <div class="col-md-5 col-sm-5 col-xs-11">
+                   {{ Form::select('food[]', $food, $attaches[0]->id, ['class' => 'form-control col-md-7 col-xs-12', 'placeholder' => 'Choose Food','required'=>'required']) }}
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1">
+                    {{ Form::number('quantity[]', $attaches[0]->pivot->quantity, ['class' => 'form-control', 'placeholder' => 'quantity','min'=>'1','id'=>'quantity']) }}
+                </div>
+            </div>
+            <div id="food-select" class="row">
             @foreach($attaches as $key=>$attach)
             @php
                 $number = $key + 1;
             @endphp
-            @if($number == 1)
-            <div class="col-md-6 col-sm-6 col-xs-12">
-               {{ Form::select('food[]', $food, $attach->id, ['class' => 'form-control col-md-7 col-xs-12', 'placeholder' => 'Choose Food','required'=>'required']) }}
-            </div>
-            @else
-            <div id="food-select">
+            @if($number != 1)
                 <div id="food{{$number}}"> 
                     <div  class="col-md-5 col-sm-5 col-xs-11 col-md-offset-3" style="margin-top:10px;">
                     {{ Form::select(
@@ -96,15 +101,18 @@ Menu Form
                         'placeholder' => 'Choose Food',
                         'required'=>'required']) }}
                     </div>
+                <div class="col-md-1 col-sm-1 col-xs-1" style="margin-top:10px;">
+                    {{ Form::number('quantity[]', $attach->pivot->quantity, ['class' => 'form-control', 'placeholder' => 'quantity','min'=>'1','id'=>'quantity']) }}
+                </div>
                 <button 
                     type="button" 
                     class="btn btn-circle btn-default col-md-1 col-sm-1 col-xs-1" 
                     style="margin-top:10px"
                     onclick="removeAppend('#food{{$number}}')">&times;</button> 
                 </div>
-            </div>
-            @endif
+                @endif
             @endforeach
+            </div>
             
             
         </div>
@@ -112,10 +120,16 @@ Menu Form
         @else
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Foods</label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-               {{ Form::select('food[]', $food, null, ['class' => 'form-control col-md-7 col-xs-12', 'placeholder' => 'Choose Food','required'=>'required']) }}
-            </div>
+            <div class="row">
+                <div class="col-md-5 col-sm-5 col-xs-11">
+                    {{ Form::select('food[]', $food, null, ['class' => 'form-control col-md-7 col-xs-12', 'placeholder' => 'Choose Food','required'=>'required']) }}
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1">
+                    {{ Form::number('quantity[]', null, ['class' => 'form-control', 'placeholder' => 'quantity','min'=>'1','id'=>'quantity']) }}
+                </div>
             <div id="food-select"></div>
+            </div>
+            
         </div>
         @endif
         <div class="form-group">
@@ -140,17 +154,24 @@ Menu Form
 @push('pageRelatedJs')
     <script>
         $(document).ready(function () {
-            var num = 1;
+
+            var num = {{ $model ? count($attaches) : 1 }};
             $('#add-more').click(function() {
                 num += 1;
-                $('#food-select').append(`<div id="food`+num+`"> <div  class="col-md-5 col-sm-5 col-xs-11 col-md-offset-3" style="margin-top:10px;">
-               {{ Form::select('food[]', $food, null, ['class' => 'form-control col-md-6 col-xs-11', 'placeholder' => 'Choose Food','required'=>'required']) }}
-                </div>
-                <button 
-                type="button" 
-                class="btn btn-circle btn-default col-md-1 col-sm-1 col-xs-1" 
-                style="margin-top:10px"
-                onclick="removeAppend('#food`+num+`')">&times;</button> </div>`);
+                $('#food-select').append(`
+                <div class="row" id="food`+num+`"> 
+                    <div  class="col-md-5 col-sm-5 col-xs-11 col-md-offset-3" style="margin-top:10px;">
+                        {{ Form::select('food[]', $food, null, ['class' => 'form-control col-md-6 col-xs-11', 'placeholder' => 'Choose Food','required'=>'required']) }}
+                    </div>
+                    <div class="col-md-1 col-sm-1 col-xs-1" style="margin-top:10px;">
+                        {{ Form::number('quantity[]', null, ['class' => 'form-control', 'placeholder' => 'quantity','min'=>'1','id'=>'quantity']) }}
+                    </div>
+                    <button 
+                        type="button" 
+                        class="btn btn-circle btn-default col-md-1 col-sm-1 col-xs-1" 
+                        style="margin-top:10px"
+                        onclick="removeAppend('#food`+num+`')">&times;</button> 
+                </div>`);
             })
 
 

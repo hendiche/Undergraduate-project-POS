@@ -63,7 +63,7 @@ Food Form
     <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Status</label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-           {{ Form::select('status', ['0'=>'inactive','1'=>'active'],null, ['class' => 'form-control col-md-7 col-xs-12', 'placeholder' => 'Choose Status','required'=>'required']) }}
+           {{ Form::select('status', ['1'=>'active','0'=>'inactive'],null, ['class' => 'form-control col-md-7 col-xs-12','required'=>'required']) }}
         </div>
     </div>
     <div class="form-group">
