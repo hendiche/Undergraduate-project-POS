@@ -19,7 +19,7 @@ class Menu extends BaseModel
     ];
 
     public function foods() {
-    	return $this->belongsToMany(Food::class,'food_menus');
+    	return $this->belongsToMany(Food::class,'food_menus')->withPivot('quantity','subtotal');
     }
 
     public function purchase() {
