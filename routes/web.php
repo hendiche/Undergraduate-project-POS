@@ -27,6 +27,7 @@ Route::get('/logout','AdminController@logout');
 Route::get('/image/{fileName}/{path}','SliderController@getFileByName');
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
 	Route::get('/dashboard','AdminController@dashboard')->name('admin.dashboard');
+	Route::get('/purchase/mark/{model}','PurchaseController@changeStatus');
 	Route::resource('/user', 'UserController');
 	Route::resource('/category', 'CategoryController');
 	Route::resource('/slider', 'SliderController');
