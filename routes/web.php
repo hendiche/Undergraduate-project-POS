@@ -10,10 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Models\Slider;
 Auth::routes();
 
 Route::get('/', function() {
-	return view('frontend.homepage');
+	return view('frontend.homepage')->with('sliders',Slider::get());
 })->name('frontend.home');
 
 Route::get('/product/{id}', 'frontendController@toDetails')->name('frontend.product');
