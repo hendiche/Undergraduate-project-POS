@@ -1,7 +1,27 @@
 @extends('master.index')
+@push('pageStyle')
+<style type="text/css">
+	div.alert {
+		margin-top: 30px;
+	}
+	div.alert a {
+		font-size: 30px;
+	}
+	.disabled {
+		color: #ddd;
+		cursor: auto !important;
+	}
+</style>
+@endpush
 @section('content')
 <section id="cart-list">
 	<div class="container">
+		@if (session('message'))
+			<div class="alert alert-danger alert-dismissable fade in">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<span><strong>Success!</strong> {{ session('message') }}</span>
+			</div>
+		@endif
 		<h1>Your Cart</h1>
 		<hr />
 		<div class="table-responsive">
@@ -17,8 +37,8 @@
 							<td></td>
 						</tr>
 					</thead>
-					<tbody>
-						@foreach($carts as $index => $cart)
+					<tbody id="tbody">
+						@foreach($carts as $key => $cart)
 						<tr>
 							<td class="image">
 								<img src="http://sariratu.sg/wp-content/uploads/2015/04/Menu7.jpg" class="img-responsive" />
@@ -28,9 +48,9 @@
 							</td>
 							<td>Rp.{{ number_format($cart->price, 2, ",", ".") }}</td>
 							<td class="qty">
-								<span class="plus"><i class="fa fa-plus" aria-hidden="true"></i></span>
+								<span class="plus" data-rowId="{{ $cart->rowId }}" id="plus{{$cart->id}}" onclick="addQty({{ $cart->id }})"><i class="fa fa-plus" aria-hidden="true"></i></span>
 								<input type="text" readonly="" value="{{ $cart->qty }}"/>
-								<span class="minus"><i class="fa fa-minus" aria-hidden="true"></i></span>
+								<span class="minus {{ $cart->qty == 1 ? 'disabled' : '' }}" data-rowId="{{ $cart->rowId }}" id="minus{{$cart->id}}" onclick="subtractQty({{$cart->id}}, {{$cart->qty}})"><i class="fa fa-minus" aria-hidden="true"></i></span>
 							</td>
 							<td class="subtotal">
 								<div>Rp.{{ number_format($cart->subtotal, 2, ",", ".") }}</div>
@@ -51,6 +71,10 @@
 				</table>
 				<div class="checkout text-right">
 					<a href="{{ route('frontend.checkout') }}" class="btn btn-success no-border-radius">Checkout</a>
+				</div>
+			@else
+				<div class="well well-lg text-center">
+					<h2>Your cart is empty</h2>
 				</div>
 			@endif
 		</div>
@@ -85,7 +109,60 @@
 <script type="text/javascript">
 	var test = {!! json_encode($carts) !!};
 	console.log(test);
+
+	function addQty(id) {
+    	var rowId = $('#plus'+id).attr('data-rowId');
+    	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    	$.ajax({
+    		url: '{{ route('frontend.update') }}',
+    		type: 'POST',
+    		data: {
+    			_token: CSRF_TOKEN,
+    			rowId: rowId,
+    			qty: 1
+    		},
+    		success: function (data) {
+    			renderTbody(data);
+    		},
+    		error: function (data) {
+    			console.log('error');
+    		}
+    	});
+    }
+
+    function subtractQty(id, qty) {
+    	if (qty == 1) return;
+    	var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    	var rowId = $('#minus'+id).attr('data-rowId');
+    	$.ajax({
+    		url: '{{ route('frontend.update') }}',
+    		type: 'POST',
+    		data: {
+    			_token: CSRF_TOKEN,
+    			rowId: rowId,
+    			qty: -1
+    		},
+    		success: function (data) {
+    			renderTbody(data);
+    		},
+    		error: function (data) {
+    			console.log('error');
+    		}
+    	});
+    }
+
 	$(document).ready(function() {
+		Number.prototype.formatMoney = function(c, d, t){
+		var n = this, 
+		    c = isNaN(c = Math.abs(c)) ? 2 : c, 
+		    d = d == undefined ? "." : d, 
+		    t = t == undefined ? "," : t, 
+		    s = n < 0 ? "-" : "", 
+		    i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))), 
+		    j = (j = i.length) > 3 ? j % 3 : 0;
+		   return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+		};
+
 		$('.mpsi-loading-page').css('display', 'none');
         $('.mpsi-page').css('display', 'block');
         $('.mpsi-page').addClass('mpsi-page-animation');
@@ -97,5 +174,50 @@
         	$('#myModal').modal();
         });
 	});
+
+	function renderTbody(data) {
+    	$('#tbody').empty();
+		var tbody = [];
+		$.each(data.carts, function(key, item) {
+			var price = parseInt(item.price);
+			var subtotal = parseInt(item.subtotal);
+			var route = '{{ route('frontend.remove_cart', ['rowId' => 'ROWID']) }}';
+			var url = route.replace("ROWID", item.rowId);
+			var clsMinus = 'minus';
+			if (item.qty == 1) clsMinus += ' disabled';
+			tbody.push('\
+				<tr>\
+					<td class="image">\
+						<img src="http://sariratu.sg/wp-content/uploads/2015/04/Menu7.jpg" class="img-responsive" />\
+					</td>\
+					<td class="product">\
+						<div>'+ item.name +'</div>\
+					</td>\
+					<td>Rp.'+ (price).formatMoney(2, ".", ",") +'</td>\
+					<td class="qty">\
+						<span class="plus" data-rowId="'+ item.rowId +'" id="plus'+ item.id +'" onclick="addQty('+ item.id +')"><i class="fa fa-plus" aria-hidden="true"></i></span>\
+						<input type="text" readonly value="'+ item.qty +'" />\
+						<span class="' + clsMinus + '" data-rowId="'+ item.rowId +'" id="minus'+ item.id +'" onclick="subtractQty('+ item.id +', '+ item.qty +')"><i class="fa fa-minus" aria-hidden="true"></i></span>\
+					</td>\
+					<td class="subtotal">\
+						<div>Rp.'+ (subtotal).formatMoney(2, ".", ",") +'</div>\
+					</td>\
+					<td class="delete text-right">\
+						<a href="#" id="remove">\
+							<span style="display: none;">'+ url +'</span>\
+							<i class="fa fa-times" aria-hidden="true"></i>\
+						</a>\
+					</td>\
+				</tr>\
+			')
+		});
+		tbody.push('\
+			<tr class="row-total">\
+				<td colspan="4" class="text-right">Your Total : </td>\
+				<td colspan="2" class="text-right">'+ data.total +'</td>\
+			</tr>\
+		');
+		$('#tbody').append(tbody);
+    }
 </script>
 @endpush

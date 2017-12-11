@@ -22,6 +22,7 @@ Route::get('/cartlist', 'frontendController@cartList')->name('frontend.cartlist'
 Route::post('/cart', 'frontendController@addToCart')->name('frontend.add_to_cart');
 Route::get('/deleteItem/{rowId}', 'frontendController@removeCart')->name('frontend.remove_cart');
 Route::get('/checkout', 'frontendController@checkoutCart')->name('frontend.checkout');
+Route::post('/updateCart', 'frontendController@updateCart')->name('frontend.update');
 
 Route::get('/logout','AdminController@logout');
 Route::get('/image/{fileName}/{path}','SliderController@getFileByName');
