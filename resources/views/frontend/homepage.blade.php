@@ -122,41 +122,15 @@
         <h1 class="text-center fs-45">MENU</h1>
         <br />
         <div class="row">
-            @php
-            $menus = [[
-                    "id" => "1",
-                    "img" => "http://sariratu.sg/wp-content/uploads/2015/04/Menu2.jpg",
-                    "name" => "Daging Cincang (Beef In Curry)",
-                    "price" => "20000"
-                ], 
-                [
-                    "id" => "2",
-                    "img" => "http://sariratu.sg/wp-content/uploads/2015/04/Menu4.jpg",
-                    "name" => "Ikan Gulai (Fish in Curry)",
-                    "price" => "20000"
-                ],
-                [
-                    "id" => "3",
-                    "img" => "http://sariratu.sg/wp-content/uploads/2015/04/Menu7.jpg",
-                    "name" => "Sambang Goreng",
-                    "price" => "20000"
-                ],
-                [
-                    "id" => "4",
-                    "img" => "http://sariratu.sg/wp-content/uploads/2015/04/Menu21.jpg",
-                    "name" => "Sayur Nangka",
-                    "price" => "20000"
-                ]];
-            @endphp
             @foreach($menus as $index => $menu)
                 <div class="col-md-3 col-sm-6 col-xs-12" id="menu-card">
                     <div>
                         <div class="image">
-                            <img src="{{ $menu['img'] }}" title="{{ $menu['name'] }}" />
+                            <img src="{{ $menu->cover }}" title="{{ $menu->cover }}" />
                         </div>
                         <div class="description">
                             <h4 class="no-margin-top">{{ $menu['name'] }}</h4>
-                            <p>bacot bacot bacot bacot bacot bacot bacot It is a long established fact that a reader</p>
+                            <p>{{ $menu['description'] }}</p>
                             <h3 class="text-center">Rp{{ number_format($menu['price'], 2, ",", '.') }}</h3>
                         </div>
                         <div class="button-cart">

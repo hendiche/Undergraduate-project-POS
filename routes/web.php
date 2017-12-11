@@ -11,10 +11,11 @@
 |
 */
 use App\Models\Slider;
+use App\Models\Menu;
 Auth::routes();
 
 Route::get('/', function() {
-	return view('frontend.homepage')->with('sliders',Slider::get());
+	return view('frontend.homepage')->with('sliders',Slider::get())->with('menus', Menu::limit(4)->orderBy('id', 'desc')->get());
 })->name('frontend.home');
 
 Route::get('/product/{id}', 'frontendController@toDetails')->name('frontend.product');
@@ -25,7 +26,7 @@ Route::get('/deleteItem/{rowId}', 'frontendController@removeCart')->name('fronte
 Route::get('/checkout', 'frontendController@checkoutCart')->name('frontend.checkout');
 Route::post('/updateCart', 'frontendController@updateCart')->name('frontend.update');
 
-Route::get('/logout','AdminController@logout');
+Route::get('/logout','AdminController@logout')->name('logout');
 Route::get('/image/{fileName}/{path}','SliderController@getFileByName');
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
 	Route::get('/dashboard','AdminController@dashboard')->name('admin.dashboard');

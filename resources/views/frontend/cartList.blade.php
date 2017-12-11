@@ -41,7 +41,7 @@
 						@foreach($carts as $key => $cart)
 						<tr>
 							<td class="image">
-								<img src="http://sariratu.sg/wp-content/uploads/2015/04/Menu7.jpg" class="img-responsive" />
+								<img src="{{ $cart->options->cover }}" class="img-responsive" />
 							</td>
 							<td class="product">
 								<div>{{ $cart->name }}</div>
@@ -69,14 +69,14 @@
 						</tr>
 					</tbody>
 				</table>
-				<div class="checkout text-right">
-					<a href="{{ route('frontend.checkout') }}" class="btn btn-success no-border-radius">Checkout</a>
-				</div>
 			@else
 				<div class="well well-lg text-center">
 					<h2>Your cart is empty</h2>
 				</div>
 			@endif
+		</div>
+		<div class="checkout text-right">
+			<a href="{{ route('frontend.checkout') }}" class="btn btn-success no-border-radius">Checkout</a>
 		</div>
 		<br />
 		<br />
@@ -188,7 +188,7 @@
 			tbody.push('\
 				<tr>\
 					<td class="image">\
-						<img src="http://sariratu.sg/wp-content/uploads/2015/04/Menu7.jpg" class="img-responsive" />\
+						<img src="'+ item.options.cover +'" class="img-responsive" />\
 					</td>\
 					<td class="product">\
 						<div>'+ item.name +'</div>\

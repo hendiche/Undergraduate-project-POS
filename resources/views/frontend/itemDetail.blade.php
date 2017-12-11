@@ -7,6 +7,9 @@
 	div.alert a {
 		font-size: 30px;
 	}
+	.upper-case {
+		text-transform: uppercase;
+	}
 </style>
 @endpush
 @section('content')
@@ -18,19 +21,18 @@
 				<span><strong>Success!</strong> {{ session('message') }}</span>
 			</div>
 		@endif
-		<h1>TITLE</h1>
+		<h1 class="upper-case">{{ $menu->name }}</h1>
 		<hr/>
 		<div class="row" id="main-section">
 			<div class="col-md-5 col-sm-12 col-xs-12">
-				<img src="http://sariratu.sg/wp-content/uploads/2015/04/Menu2.jpg" class="img-responsive mpsi-popup-img" onclick="showPopupImg(this)" />
+				<img src="{{ $menu->cover }}" class="img-responsive mpsi-popup-img" onclick="showPopupImg(this)" />
 			</div>
 			<div class="col-md-7 col-sm-12 col-xs-12 description">
 				{!! Form::open(['url' => route('frontend.add_to_cart'), 'method' => 'POST']) !!}
-					<input type="hidden" name="product_id" value="1">
-					<h2>Price</h2>
+					<input type="hidden" name="product_id" value="{{ $menu->id }}">
+					<h2 class="no-margin-top">Rp.{{ number_format($menu->price, 2, '.', ',') }}</h2>
 					{{ Form::submit('Add to cart', ['class' => 'btn btn-success no-border-radius']) }}
-					{{-- <a href="" class="btn btn-success no-border-radius">Add to cart</a> --}}
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce turpis nibh, mattis ac est quis, cursus ullamcorper felis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus egestas mi non metus tristique semper. Quisque fringilla magna sit amet fermentum ultrices. In gravida tincidunt lacus eget hendrerit. Praesent dapibus ligula quis nisi rhoncus convallis sed at velit.</p>
+					<p>{{ $menu->description }}</p>
 				{!! Form::close() !!}
 			</div>
 		</div>
@@ -38,16 +40,13 @@
 		<br />
 		<h4><strong>You may also like to eat...</strong></h4>
 		<hr />
-		@php
-		$suggest = [1, 2, 3, 4];
-		@endphp
 		<div class="row" id="suggest-section">
-			@foreach($suggest as $index => $item)
+			@foreach($suggests as $index => $item)
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="container cursor-pointer" id="onclick" data-href="{{ route('frontend.product', ['id' => 10]) }}">
-						<img src="http://sariratu.sg/wp-content/uploads/2015/04/Menu4.jpg" class="img-responsive" />
-						<h3 class="text-center">name</h3>
-						<h3 class="text-center">price</h3>
+					<div class="container cursor-pointer" id="onclick" data-href="{{ route('frontend.product', ['id' => $item->id]) }}">
+						<img src="{{ $item->cover }}" class="img-responsive" />
+						<h3 class="text-center">{{ $item->name }}</h3>
+						<h3 class="text-center">Rp.{{ number_format($item->price, 2, '.', ',') }}</h3>
 					</div>
 				</div>
 			@endforeach

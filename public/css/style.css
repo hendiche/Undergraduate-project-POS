@@ -98,6 +98,9 @@ a.mpsi-nav {
 .cart > a > span {
 	font-size: x-large;
 }
+.dropdown {
+	margin-top: 20px;
+}
 #footer {
 	color: #ffffff;
 }

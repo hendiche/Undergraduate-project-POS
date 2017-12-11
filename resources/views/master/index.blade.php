@@ -123,7 +123,7 @@
                                 <i class="fa fa-user fa-fw fs-x-large"></i><i class="fa fa-caret-down fs-x-large"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-user">
-                                <li><a href=""><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                                <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                             </ul>
                         </li>
                         @endguest

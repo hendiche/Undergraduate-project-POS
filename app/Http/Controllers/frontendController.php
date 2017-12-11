@@ -4,17 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Cart;
+use App\Models\Menu;
 
 class frontendController extends Controller
 {
     public function toDetails($id)
     {
-    	return view('frontend.itemDetail');
+        $menu = Menu::findOrFail($id);
+        $suggest = Menu::get()->except(['id' => $id]);
+    	return view('frontend.itemDetail')->with('menu', $menu)->with('suggests', $suggest);
     }
 
     public function addToCart(Request $request)
     {
-    	Cart::add(['id' => '1', 'name' => 'product_name', 'qty' => 1, 'price' => 20000]);
+        $menu = Menu::findOrFail($request->product_id);
+        Cart::add([
+            'id' => $menu->id,
+            'name' => $menu->name,
+            'price' => $menu->price,
+            'qty' => 1,
+            'options' => ['cover' => $menu->cover]
+        ]);
 
     	return redirect()->back()->with('message', 'Your Food has successfully added!!!');
     }
