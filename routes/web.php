@@ -16,6 +16,15 @@ Route::get('/', function() {
 	return view('frontend.homepage');
 })->name('frontend.home');
 
+Route::get('/about',function(){
+	return view('frontend.about');
+});
+
+Route::get('/contact',function(){
+	return view('frontend.contact');
+});
+
+
 Route::get('/product/{id}', 'frontendController@toDetails')->name('frontend.product');
 Route::get('/cartlist', 'frontendController@cartList')->name('frontend.cartlist');
 
