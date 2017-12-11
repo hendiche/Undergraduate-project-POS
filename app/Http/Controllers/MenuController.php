@@ -41,9 +41,10 @@ class MenuController extends MasterController
         if (!$model->save()) {
             return $this->sendErrorResponse($model->errors());
         }
+        $model->foods()->detach();
         foreach ($request->food as $key => $value) {
         	$food = Food::find($value);
-        	$price = $food->price * 1;
+        	$price = $food->price * $request->quantity[$key];
         	$model->foods()->attach($value,['quantity' => 1,'subtotal' => $price]);
         }
         
