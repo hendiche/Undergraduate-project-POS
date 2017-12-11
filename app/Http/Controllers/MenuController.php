@@ -36,7 +36,7 @@ class MenuController extends MasterController
     	$model->price = $request->price;
     	$model->status = $request->status;
     	$model->description = $request->description;
-    	$model->cover = url('/image/menu/'.$this->uploadFiles($request->cover,$model));
+    	$model->cover = $request->cover ? url('/image/menu/'.$this->uploadFiles($request->cover,$model)) : $model->cover;
 
         if (!$model->save()) {
             return $this->sendErrorResponse($model->errors());
@@ -61,9 +61,9 @@ class MenuController extends MasterController
             })
             ->editColumn('status', function ($model) {
                 if ($model->status == 0) {
-                    return '<p style="color:red">'.StatusEnum::getString($model->status).'</p>';
+                    return '<p style="color:red"> <strong>'.StatusEnum::getString($model->status).'</strong></p>';
                 } 
-                return '<p style="color:green">'.StatusEnum::getString($model->status).'</p>';
+                return '<p style="color:green"> <strong>'.StatusEnum::getString($model->status).'</strong></p>';
             })
             ->addColumn('foods', function($model) {
                 $foods = '';
@@ -119,7 +119,7 @@ class MenuController extends MasterController
         $view = property_exists($this, 'create_view') ? $this->create_view : $this->form_view;
         $this->attributes['route'] = $this->getFormRoute();
 
-        return $this->render(view($view))->with('food',Food::pluck('name','id'));
+        return $this->render(view($view))->with('food',Food::where('status',1)->pluck('name','id'));
     }
 
     public function edit($model)
@@ -127,6 +127,6 @@ class MenuController extends MasterController
         $view = property_exists($this, 'edit_view') ? $this->edit_view : $this->form_view;
         $this->attributes['method'] = 'PUT';
         $this->attributes['route'] = $this->getFormRoute($model);
-        return $this->render(view($view), $model)->with('food',Food::pluck('name','id'))->with('attaches',$model->foods()->get());
+        return $this->render(view($view), $model)->with('food',Food::where('status',1)->pluck('name','id'))->with('attaches',$model->foods()->get());
     }
 }

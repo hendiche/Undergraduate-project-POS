@@ -7,6 +7,7 @@ use App\Http\Controllers\MasterController;
 use App\Models\Food;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
+use App\Helpers\Enums\StatusEnum;
 
 class FoodController extends MasterController
 {
@@ -53,7 +54,7 @@ class FoodController extends MasterController
     	$model->price = $request->price;
     	$model->category_id = $request->category;
     	$model->status = $request->status;
-    	$model->cover = url('/image/food/'.$this->uploadFiles($request->cover,$model));
+    	$model->cover = $request->cover ? url('/image/food/'.$this->uploadFiles($request->cover,$model)) : $model->cover;
         if (!$model->save()) {
             return $this->sendErrorResponse($model->errors());
         }
@@ -97,7 +98,10 @@ class FoodController extends MasterController
                 return $this->makeActionButtonsForDataTable($model);
             })
             ->editColumn('status', function ($model) {
-            	return $model->status;
+            	if ($model->status == 0) {
+                    return '<p style="color:red"> <strong>'.StatusEnum::getString($model->status).'</strong></p>';
+                } 
+                return '<p style="color:green"> <strong>'.StatusEnum::getString($model->status).'</strong></p>';
             })
             ->editColumn('category_id', function ($model) {
             	return $model->category->name;
@@ -105,7 +109,7 @@ class FoodController extends MasterController
             ->editColumn('cover', function ($model) {
             	return '<img src="'.$model->cover.'" style="height:200px;"/>';
             })
-            ->rawColumns(['action', 'cover'])
+            ->rawColumns(['action', 'cover','status'])
             ->make(true);
     }
 }

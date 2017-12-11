@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 class Purchase extends BaseModel
 {
     protected $fillable = [
-    	'total','type','number','note','user_id','guest_id'
+    	'total','type','number','note','user_id','guest_id','status'
     ];
 
     protected $dates = [
@@ -21,18 +21,18 @@ class Purchase extends BaseModel
     ];
 
     public function user() {
-    	return $this->belongsTo(User::class);
+    	return $this->belongsTo(User::class,'user_id');
     }
 
     public function guest() {
-    	return $this->belongsTo(Guest::class);
+    	return $this->belongsTo(Guest::class,'guest_id');
     }
 
-    public function custom() {
-    	return $this->belongsToMany(Custom::class);
+    public function customs() {
+    	return $this->belongsToMany(Custom::class,'custom_purchases')->withPivot('quantity','subtotal');
     }
 
-	public function menu() {
-    	return $this->belongsToMany(Menu::class);
+	public function menus() {
+    	return $this->belongsToMany(Menu::class,'menu_purchases')->withPivot('quantity','subtotal');
     }
 }

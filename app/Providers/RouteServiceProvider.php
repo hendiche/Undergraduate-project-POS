@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\Food;
 use App\Models\Menu;
 use App\Models\Guest;
+use App\Models\Purchase;
+use App\Models\Custom;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -38,6 +40,8 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('food', Food::class);
         Route::model('menu', Menu::class);
         Route::model('guest', Guest::class);
+        Route::model('purchase', Purchase::class);
+        Route::model('custom', Custom::class);
     }
 
     /**

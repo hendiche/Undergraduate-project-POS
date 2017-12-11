@@ -14,24 +14,28 @@
               <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
-                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                  <li data-target="#myCarousel" data-slide-to="1"></li>
-                  <li data-target="#myCarousel" data-slide-to="2"></li>
+                    @foreach($sliders as $i=>$slider)
+                    @if($i == 0)
+                    <li data-target="#myCarousel" data-slide-to="{{$i}}" class="active"></li>
+                    @else
+                    <li data-target="#myCarousel" data-slide-to="{{$i}}"></li>
+                    @endif
+                    @endforeach
                 </ol>
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
-                  <div class="item active">
-                    <img src="https://i.ytimg.com/vi/dGFSjKuJfrI/maxresdefault.jpg" alt="Los Angeles">
-                  </div>
-
-                  <div class="item">
-                    <img src="https://i.ytimg.com/vi/prALrHUJ8Ns/hqdefault.jpg" alt="Chicago">
-                  </div>
-                
-                  <div class="item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCADSWXh9jUjoQowEKSGjg-eynpDWl9dtBCQ6RIfF0O-DOazLEtQ" alt="New york">
-                  </div>
+                    @foreach($sliders as $i=>$slider)
+                    @if($i == 0) 
+                    <div class="item active">
+                        <img src="{{$slider->cover}}">
+                    </div>
+                    @else
+                    <div class="item">
+                        <img src="{{ $slider->cover }}">
+                    </div>
+                    @endif
+                    @endforeach
                 </div>
 
                 <!-- Left and right controls -->
