@@ -77,6 +77,7 @@
                   <li><a href="{{ route('purchase.index') }}"><i class="fa fa-money"></i>Purchase</a></li>
                   <li><a href="{{ route('food.index') }}"><i class="fa fa-cutlery"></i>Food</a></li>
                   <li><a href="{{ route('menu.index') }}"><i class="fa fa-list"></i>Menu</a></li>
+                  <li><a href="{{ route('custom.index') }}"><i class="fa fa-random"></i>Custom</a></li>
                   <li><a><i class="fa fa-cogs"></i> Settings <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ route('category.index') }}">Category</a></li>

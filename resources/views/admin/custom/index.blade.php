@@ -12,7 +12,7 @@ Custom Table
 <table id="type-table" class="table table-striped table-bordered">
   <thead>
     <tr>
-      <th>ID</th>
+      <th>No</th>
       <th>Foods</th>
       <th>Total</th>
       <th>Action</th>
