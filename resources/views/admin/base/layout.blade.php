@@ -74,6 +74,7 @@
                   <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-home"></i>Dashboard</a></li>
                   <li><a href="{{ route('user.index') }}"><i class="fa fa-user"></i>User</a></li>
                   <li><a href="{{ route('guest.index') }}"><i class="fa fa-user-circle"></i>Guest</a></li>
+                  <li><a href="{{ route('purchase.index') }}"><i class="fa fa-money"></i>Purchase</a></li>
                   <li><a href="{{ route('food.index') }}"><i class="fa fa-cutlery"></i>Food</a></li>
                   <li><a href="{{ route('menu.index') }}"><i class="fa fa-list"></i>Menu</a></li>
                   <li><a><i class="fa fa-cogs"></i> Settings <span class="fa fa-chevron-down"></span></a>

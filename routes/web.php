@@ -33,6 +33,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
 	Route::resource('/food', 'FoodController');
 	Route::resource('/menu', 'MenuController');
 	Route::resource('/guest', 'GuestController');
+	Route::resource('/purchase', 'PurchaseController');
+	Route::resource('/custom', 'CustomController');
 
 	Route::group(['prefix' => 'datatable', 'middleware' => ['auth']], function () {
 		Route::post('/user', 'UserController@dataTable')->name('user.list');
@@ -41,5 +43,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
 		Route::post('/food', 'FoodController@dataTable')->name('food.list');
 		Route::post('/menu', 'MenuController@dataTable')->name('menu.list');
 		Route::post('/guest', 'GuestController@dataTable')->name('guest.list');
+		Route::post('/purchase', 'PurchaseController@dataTable')->name('purchase.list');
+		Route::post('/custom', 'CustomController@dataTable')->name('custom.list');
 	});
 });

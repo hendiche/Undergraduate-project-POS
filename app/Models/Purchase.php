@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 class Purchase extends BaseModel
 {
     protected $fillable = [
-    	'total','type','number','note','user_id','guest_id'
+    	'total','type','number','note','user_id','guest_id','status'
     ];
 
     protected $dates = [

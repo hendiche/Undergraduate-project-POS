@@ -17,7 +17,7 @@ class Custom extends BaseModel
         'updated_at',
     ];
 
-    public function food() {
+    public function foods() {
     	return $this->belongsToMany(Food::class,'custom_foods');
     }
 
