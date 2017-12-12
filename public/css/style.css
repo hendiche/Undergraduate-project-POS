@@ -202,7 +202,6 @@ section#about, section#menu, section#footer > div {
 .mpsi-btn-more {
 	margin: 0 auto;
 	border-radius: 0px;
-	display: block;
 	padding: 15px 35px 15px calc(35px - 12px);
 	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.21);
 	margin-bottom: 20px;

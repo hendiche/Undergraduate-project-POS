@@ -18,13 +18,13 @@ Route::get('/', function() {
 	return view('frontend.homepage')->with('sliders',Slider::get())->with('menus', Menu::limit(4)->orderBy('id', 'desc')->get());
 })->name('frontend.home');
 
-Route::get('/about',function(){
+Route::get('/about',function() {
 	return view('frontend.about');
-});
+})->name('frontend.about');
 
-Route::get('/contact',function(){
+Route::get('/contact',function() {
 	return view('frontend.contact');
-});
+})->name('frontend.contact');
 
 
 Route::get('/product/{id}', 'frontendController@toDetails')->name('frontend.product');

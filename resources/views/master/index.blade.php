@@ -104,9 +104,9 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <ul class="nav navbar-nav mpsi-nav-menu">
                         <li><a href="{{ route('frontend.home') }}" class="hvr-underline-from-center"><h3>Home</h3></a></li>
-                        <li><a href="#" class="hvr-underline-from-center"><h3>About</h3></a></li>
+                        <li><a href="{{ route('frontend.about') }}" class="hvr-underline-from-center"><h3>About</h3></a></li>
                         <li><a href="#" class="hvr-underline-from-center"><h3>Menu</h3></a></li>
-                        <li><a href="#" class="hvr-underline-from-center"><h3>Contact</h3></a></li>
+                        <li><a href="{{ route('frontend.contact') }}" class="hvr-underline-from-center"><h3>Contact</h3></a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-top-links navbar-right">
                         <li class="cart">

@@ -114,7 +114,9 @@
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-success hvr-icon-wobble-horizontal mpsi-btn-more">MORE ABOUT US</button>
+        <div class="text-center">
+            <a href="{{ route('frontend.about') }}" class="btn btn-success hvr-icon-wobble-horizontal mpsi-btn-more">MORE ABOUT US</a>
+        </div>
     </div>
 </section>
 <section id="menu">
@@ -143,7 +145,9 @@
                 </div>
             @endforeach
         </div>
-        <button type="button" class="btn btn-success hvr-icon-wobble-horizontal mpsi-btn-more">MORE MENU</button>
+        <div class="text-center">
+            <a href="#" class="btn btn-success hvr-icon-wobble-horizontal mpsi-btn-more">MORE MENU</a>
+        </div>
     </div>
 </section>
 @endsection
