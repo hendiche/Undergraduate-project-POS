@@ -29,6 +29,11 @@ Route::get('/contact',function() {
 	return view('frontend.contact');
 })->name('frontend.contact');
 
+Route::get('/menu',function(){
+	$menu = App\Models\Menu::all();
+	return view('frontend.menu')->with('menu',$menu);
+})->name('frontend.menu');
+
 
 Route::get('/product/{id}', 'frontendController@toDetails')->name('frontend.product');
 Route::get('/menu/custom', 'frontendController@toCustom')->name('frontend.custom');
@@ -44,8 +49,8 @@ Route::post('/updateCart', 'frontendController@updateCart')->name('frontend.upda
 Route::get('/logout','AdminController@logout')->name('logout');
 Route::get('/image/{fileName}/{path}','SliderController@getFileByName');
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
-	Route::get('/dashboard','AdminController@dashboard')->name('admin.dashboard');
 	Route::get('/purchase/mark/{model}','PurchaseController@changeStatus');
+	Route::post('/menu/calculate','MenuController@calculate');
 	Route::resource('/user', 'UserController');
 	Route::resource('/category', 'CategoryController');
 	Route::resource('/slider', 'SliderController');
@@ -54,6 +59,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
 	Route::resource('/guest', 'GuestController');
 	Route::resource('/purchase', 'PurchaseController');
 	Route::resource('/custom', 'CustomController');
+	Route::resource('/dashboard', 'AdminController');
 
 	Route::group(['prefix' => 'datatable', 'middleware' => ['auth']], function () {
 		Route::post('/user', 'UserController@dataTable')->name('user.list');
@@ -64,5 +70,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
 		Route::post('/guest', 'GuestController@dataTable')->name('guest.list');
 		Route::post('/purchase', 'PurchaseController@dataTable')->name('purchase.list');
 		Route::post('/custom', 'CustomController@dataTable')->name('custom.list');
+		Route::post('/dashboard', 'AdminController@dataTable')->name('dashboard.list');
 	});
 });
