@@ -22,8 +22,6 @@
     	text-decoration: none;
     	margin : 5px 2px;
     	border-radius:50%;
-    }
-    .fa{
     	background-color: #17A827;
     	color: #ffffff;
     }

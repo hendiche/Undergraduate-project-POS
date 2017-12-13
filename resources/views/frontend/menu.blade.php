@@ -55,7 +55,7 @@
         <div class="row">
             <div class="col-md-12 col-sm-6 col-xs-12">        
             @foreach($menu as $data)
-                <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12" id="menu-card">
                     <div class="image">
                         <img src="{{ $data->cover }}" title="{{ $data->cover }}" class="menu-img" />
                         <div class="description name-desc">
