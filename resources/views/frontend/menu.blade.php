@@ -24,13 +24,36 @@
         text-align: left;
         margin-left: 10px;
     }
+    .food{
+        padding: 20px; 
+        width: 150px;
+        height: 150px;
+        font-size: 30px;
+        text-align: center;
+        text-decoration: none;
+        margin : 5px 2px;
+        border-radius:50%;
+        background-color: #ffffff;
+    }
+    .fa-cutlery{
+        color: #17A827;
+    }
+    .fa-cutlery:hover{
+        color: #999999;
+         text-decoration: none;
+    }
 </style>
 @endpush
 @section('content')
 <section id="menu">
 	<div class="container-fuid">
+        <div class="col-md-12 col-sm-6 col-xs-12">
+            <div class="col-md-12 col-sm-6 col-xs-12 text-right">
+                <a href="{{ route('frontend.custom') }}" class="fa fa-cutlery food"> Custom Menu</a>
+            </div>
+        </div>
         <div class="row">
-            <div class="col-md-12">        
+            <div class="col-md-12 col-sm-6 col-xs-12">        
             @foreach($menu as $data)
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="image">
