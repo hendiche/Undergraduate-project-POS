@@ -45,6 +45,8 @@ Route::get('/deleteItem/{rowId}', 'frontendController@removeCart')->name('fronte
 Route::get('/checkout', 'frontendController@checkoutCart')->name('frontend.checkout');
 Route::post('/checkout/store', 'frontendController@checkoutStore')->name('frontend.store.checkout');
 Route::post('/updateCart', 'frontendController@updateCart')->name('frontend.update');
+Route::get('/history', 'frontendController@toHistory')->name('frontend.history');
+Route::get('/history/detail/{id}', 'frontendController@historyDetail')->name('frontend.history.detail');
 
 Route::get('/logout','AdminController@logout')->name('logout');
 Route::get('/image/{fileName}/{path}','SliderController@getFileByName');

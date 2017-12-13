@@ -123,6 +123,9 @@
                                 <i class="fa fa-user fa-fw fs-x-large"></i><i class="fa fa-caret-down fs-x-large"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-user">
+                                <li><a class="mpsi-profile-name"><i class="fa fa-user" aria-hidden="true"></i> {{ Auth::user()->name }}</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ route('frontend.history') }}"><i class="fa fa-history" aria-hidden="true"></i>&nbsp; History</a></li>
                                 <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                             </ul>
                         </li>

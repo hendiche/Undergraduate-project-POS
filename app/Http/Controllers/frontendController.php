@@ -87,7 +87,7 @@ class frontendController extends Controller
                 if ($item->options->type == 'menu') {
                     $purchase->menus()->attach($item->id, ['quantity' => $item->qty, 'subtotal' => ($item->price * $item->qty)]);
                 } else if ($item->options->type == 'custom') {
-
+                    $purchase->customs()->attach($item->id, ['quantity' => $item->qty, 'subtotal' => ($item->price * $item->qty)]);
                 }
             }
             Cart::destroy();
@@ -109,6 +109,21 @@ class frontendController extends Controller
             'carts' => $carts,
             'total' => $total
         ], 200);
+    }
+
+    public function toHistory()
+    {
+        $purchases = Purchase::where('type', '=', PurchaseType::getString(0))
+            ->where('user_id', '=', Auth::id())
+            ->get();
+        return view('frontend.history')->with('histories', $purchases);
+    }
+
+    public function historyDetail($historyId) 
+    {
+        $purchase = Purchase::findOrFail($historyId);
+
+        return view('frontend.historyDetail')->with('detail', $purchase);
     }
 
     public function toCustom()

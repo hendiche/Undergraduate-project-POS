@@ -101,6 +101,9 @@ a.mpsi-nav {
 .dropdown {
 	margin-top: 20px;
 }
+.mpsi-profile-name:hover {
+	background-color: initial !important;
+} 
 #footer {
 	color: #ffffff;
 }
