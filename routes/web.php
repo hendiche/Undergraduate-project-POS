@@ -49,7 +49,10 @@ Route::get('/logout','AdminController@logout')->name('logout');
 Route::get('/image/{fileName}/{path}','SliderController@getFileByName');
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
 	Route::get('/purchase/mark/{model}','PurchaseController@changeStatus');
+	Route::get('/mark/{model}','PurchaseController@changeStatus');
 	Route::post('/menu/calculate','MenuController@calculate');
+	Route::post('/dashboard/calculateMenu','AdminController@calculateMenu');
+	Route::post('/dashboard/calculateCustom','AdminController@calculateCustom');
 	Route::resource('/user', 'UserController');
 	Route::resource('/category', 'CategoryController');
 	Route::resource('/slider', 'SliderController');
