@@ -1,6 +1,6 @@
 @extends('admin.base.layout')
 @section('title')
-Menu
+Order
 @endsection
 @if(empty($model))
     @section('subtitle')
@@ -12,7 +12,7 @@ Menu
     @endsection
 @endif
 @section('top_title')
-Menu Form
+Order Form
 @endsection
 @push('pageRelatedCss')
 <style type="text/css">
@@ -36,85 +36,12 @@ Menu Form
         'files' => true,
         'data-parsley-validate'
     ]) !!}
-    <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Cover</label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-              <input 
-                    type="file" 
-                    name="cover"
-                    id="input-file-disable-remove" 
-                    class="dropify" 
-                    data-show-remove="false" 
-                    data-max-file-size="100M"
-                    @if($model) 
-                        @if($model->cover)  
-                            data-default-file="{{ $model->cover }}"
-                        @endif
-                    @endif
-                />
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name</label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-            {{ Form::text('name', null, ['class' => 'form-control col-md-7 col-xs-12', 'placeholder' => 'Name','required'=>'required','maxlength'=>30]) }}
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Status</label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-           {{ Form::select('status', ['1'=>'active','0'=>'inactive'],null, ['class' => 'form-control col-md-7 col-xs-12','required'=>'required']) }}
-        </div>
-    </div>
     <div id="food-group">
-        @if($model)
-        <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Foods</label>
-            
-            <div class="row">
-                <div class="col-md-5 col-sm-5 col-xs-11">
-                   {{ Form::select('food[]', $food, $attaches[0]->id, ['class' => 'foods form-control col-md-7 col-xs-12', 'placeholder' => 'Choose Food','required'=>'required']) }}
-                </div>
-                <div class="col-md-1 col-sm-1 col-xs-1">
-                    {{ Form::number('quantity[]', $attaches[0]->pivot->quantity, ['class' => 'quantities form-control', 'placeholder' => 'qty','min'=>'1','id'=>'quantity1']) }}
-                </div>
-            </div>
-            <div id="food-select" class="row">
-            @foreach($attaches as $key=>$attach)
-            @php
-                $number = $key + 1;
-            @endphp
-            @if($number != 1)
-                <div id="food{{$number}}"> 
-                    <div  class="col-md-5 col-sm-5 col-xs-11 col-md-offset-3" style="margin-top:10px;">
-                    {{ Form::select(
-                        'food[]',
-                        $food,
-                         $attach->id, 
-                        ['class' => 'foods form-control col-md-6 col-xs-11', 
-                        'placeholder' => 'Choose Food',
-                        'required'=>'required']) }}
-                    </div>
-                <div class="col-md-1 col-sm-1 col-xs-1" style="margin-top:10px;">
-                    {{ Form::number('quantity[]', $attach->pivot->quantity, ['class' => 'quantities form-control', 'placeholder' => 'qty','min'=>'1','id'=>'quantity']) }}
-                </div>
-                <button 
-                    type="button" 
-                    class="btn btn-circle btn-default col-md-1 col-sm-1 col-xs-1" 
-                    style="margin-top:10px"
-                    onclick="removeAppend('#food{{$number}}')">&times;</button> 
-                </div>
-                @endif
-            @endforeach
-            </div>
-        </div>
-        
-        @else
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Foods</label>
             <div class="row">
                 <div class="col-md-5 col-sm-5 col-xs-11">
-                    {{ Form::select('food[]', $food, null, ['class' => 'foods form-control col-md-7 col-xs-12', 'placeholder' => 'Choose Food','required'=>'required','id'=>'food-sel1']) }}
+                    {{ Form::select('food[]', $food, null, ['class' => 'foods form-control col-md-7 col-xs-12', 'placeholder' => 'Choose Food','id'=>'food-sel1']) }}
                 </div>
                 <div class="col-md-1 col-sm-1 col-xs-1">
                     {{ Form::number('quantity[]', 1, ['class' => 'quantities form-control', 'placeholder' => 'qty','min'=>'1','id'=>'quantity1']) }}
@@ -123,11 +50,26 @@ Menu Form
             </div>
             
         </div>
-        @endif
         <div class="form-group">
             <a class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" href="javascript:void(0);" id="add-more">add more</a>
         </div>
-        
+    </div>
+    <div id="menu-group">
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Menus</label>
+            <div class="row">
+                <div class="col-md-5 col-sm-5 col-xs-11">
+                    {{ Form::select('menu[]', $menu, null, ['class' => 'form-control col-md-7 col-xs-12','placeholder' => 'Choose Menu']) }}
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1">
+                    {{ Form::number('quantity[]', 1, ['class' => 'form-control', 'placeholder' => 'qty','min'=>'1']) }}
+                </div>
+                <div id="menu-select" class="col-md-12 col-sm-12 col-xs-12"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <a class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" href="javascript:void(0);" id="add-menu">add more</a>
+        </div>
     </div>
     <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Price</label>
@@ -136,9 +78,9 @@ Menu Form
         </div>
     </div>
     <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Description</label>
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Note</label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-            {{ Form::textarea('description', null, ['size' => '30x5','class' => 'form-control col-md-7 col-xs-12','placeholder'=>'add description']) }}
+            {{ Form::textarea('note', null, ['size' => '30x5','class' => 'form-control col-md-7 col-xs-12','placeholder'=>'add note']) }}
         </div>
     </div>
     <div class="form-group">
@@ -168,7 +110,7 @@ Menu Form
                 }
                 $.ajax({
                     type: "POST",
-                    url: 'calculate',
+                    url: '/mpsi_pos/public/admin/menu/calculate',
                     data: {
                         "_token": "{{ csrf_token() }}",
                         "foods[]": arrFood,
@@ -194,7 +136,7 @@ Menu Form
                 }
                 $.ajax({
                     type: "POST",
-                    url: 'calculate',
+                    url: '/mpsi_pos/public/admin/menu/calculate',
                     data: {
                         "_token": "{{ csrf_token() }}",
                         "foods[]": arrFood,
@@ -205,13 +147,13 @@ Menu Form
                     }
                 });
             });
-            var num = {{ $model ? count($attaches) : 1 }};
+            var num = 1;
             $('#add-more').click(function() {
                 num += 1;
                 $('#food-select').append(`
                 <div class="row" id="food`+num+`"> 
                     <div  class="col-md-5 col-sm-5 col-xs-11 col-md-offset-3" style="margin-top:10px;">
-                        {{ Form::select('food[]', $food, null, ['class' => 'foods form-control col-md-6 col-xs-11', 'placeholder' => 'Choose Food','required'=>'required','id'=>'food-sel`+num+`']) }}
+                        {{ Form::select('food[]', $food, null, ['class' => 'foods form-control col-md-6 col-xs-11', 'placeholder' => 'Choose Food','id'=>'food-sel`+num+`']) }}
                     </div>
                     <div class="col-md-1 col-sm-1 col-xs-1" style="margin-top:10px;">
                         {{ Form::number('quantity[]', 1, ['class' => 'quantities form-control', 'placeholder' => 'qty','min'=>'1','id'=>'quantity`+num+`']) }}
@@ -222,44 +164,28 @@ Menu Form
                         style="margin-top:10px"
                         onclick="removeAppend('#food`+num+`')">&times;</button> 
                 </div>`);
-            })
-
-
-            // Basic
-            $('.dropify').dropify();
-            // Translated
-            $('.dropify-fr').dropify({
-                messages: {
-                    default: 'Glissez-déposez un fichier ici ou cliquez'
-                    , replace: 'Glissez-déposez un fichier ou cliquez pour remplacer'
-                    , remove: 'Supprimer'
-                    , error: 'Désolé, le fichier trop volumineux'
-                }
             });
-            // Used events
-            var drEvent = $('#input-file-events').dropify();
-            drEvent.on('dropify.beforeClear', function (event, element) {
-                return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+            var menu = 1;
+            $('#add-menu').click(function(event) {
+                menu += 1;
+                $('#menu-select').append(`
+            <div class="row" id="menu`+menu+`">
+                <div  class="col-md-5 col-sm-5 col-xs-11 col-md-offset-3" style="margin-top:10px;">
+                    {{ Form::select('menu[]', $menu, null, ['class' => 'form-control col-md-7 col-xs-12','placeholder' => 'Choose Menu']) }}
+                </div>
+                <div  class="col-md-1 col-sm-1 col-xs-1" style="margin-top:10px;">
+                    {{ Form::number('quantity[]', 1, ['class' => 'form-control', 'placeholder' => 'qty','min'=>'1']) }}
+                </div>
+                <button 
+                        type="button" 
+                        class="btn btn-circle btn-default col-md-1 col-sm-1 col-xs-1" 
+                        style="margin-top:10px"
+                        onclick="removeAppend('#menu`+menu+`')">&times;</button> 
+            </div>
+                `);
             });
-            drEvent.on('dropify.afterClear', function (event, element) {
-                alert('File deleted');
-            });
-            drEvent.on('dropify.errors', function (event, element) {
-                console.log('Has Errors');
-            });
-            var drDestroy = $('#input-file-to-destroy').dropify();
-            drDestroy = drDestroy.data('dropify')
-            $('#toggleDropify').on('click', function (e) {
-                e.preventDefault();
-                if (drDestroy.isDropified()) {
-                    drDestroy.destroy();
-                }
-                else {
-                    drDestroy.init();
-                }
-            })
         });
-        function removeAppend(id) {
+                function removeAppend(id) {
             $(id).html('');
              var foods = $('.foods');
                 var arrFood = [];
@@ -273,7 +199,7 @@ Menu Form
                 }
                 $.ajax({
                     type: "POST",
-                    url: 'calculate',
+                    url: '/mpsi_pos/public/admin/menu/calculate',
                     data: {
                         "_token": "{{ csrf_token() }}",
                         "foods[]": arrFood,

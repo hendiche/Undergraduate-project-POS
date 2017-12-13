@@ -20,6 +20,16 @@ class MenuController extends MasterController
         'delete'
     ];
 
+    public function calculate(Request $request) {
+        $total = 0;
+        foreach ($request->foods as $key => $food) {
+            $food = Food::find($food);
+            $total += $food->price * $request->quantities[$key];
+        }
+        
+        return response($total);
+    }
+
     public function dataTable($model = null)
     {
         $builder = $this->prepareDataTable(Menu::class);

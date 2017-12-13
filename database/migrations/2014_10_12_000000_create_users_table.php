@@ -39,7 +39,7 @@ class CreateUsersTable extends Migration
             $table->integer('total');
             $table->string('type');
             $table->string('number');
-            $table->string('note');
+            $table->string('note')->nullable();
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('guest_id')->unsigned()->nullable();
 
