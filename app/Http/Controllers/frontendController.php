@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Cart;
+use Auth;
 use App\Models\Menu;
 use App\Models\Food;
+use App\Models\Guest;
+use App\Models\Purchase;
+use App\Helpers\Enums\PurchaseType;
+use App\Helpers\Enums\PurchaseStatus;
 
 class frontendController extends Controller
 {
@@ -24,7 +29,10 @@ class frontendController extends Controller
             'name' => $menu->name,
             'price' => $menu->price,
             'qty' => 1,
-            'options' => ['cover' => $menu->cover]
+            'options' => [
+                'cover' => $menu->cover,
+                'type' => 'menu'
+                ]
         ]);
 
     	return redirect()->back()->with('message', 'Your Food has successfully added!!!');
@@ -46,9 +54,45 @@ class frontendController extends Controller
 
     public function checkoutCart()
     {
-    	Cart::destroy();
+    	return view('frontend.checkout');
+    }
 
-    	return redirect()->route('frontend.home');
+    public function checkoutStore(Request $request)
+    {
+        $cart = Cart::content();
+        $total = 0;
+        foreach($cart as $item) {
+            $total += ($item->price * $item->qty);
+        }
+        if (!Auth::check()) {
+            $guest = new Guest();
+            $guest->name = $request->name;
+            $guest->phone = $request->phone;
+            $guest->address = $request->address;
+            $guest->save();
+        }
+        $purchase = new Purchase();
+        $purchase->total = $total;
+        $purchase->number = $this->generateRandomString();
+        $purchase->status = PurchaseStatus::getString(0);
+        if (Auth::check()) {
+            $purchase->type = PurchaseType::getString(0);
+            $purchase->user_id = Auth::id();
+        } else {
+            $purchase->type = PurchaseType::getString(1);
+            $purchase->guest_id = $guest->id;
+        }
+        if ($purchase->save()) {
+            foreach($cart as $item) {
+                if ($item->options->type == 'menu') {
+                    $purchase->menus()->attach($item->id, ['quantity' => $item->qty, 'subtotal' => ($item->price * $item->qty)]);
+                } else if ($item->options->type == 'custom') {
+
+                }
+            }
+            Cart::destroy();
+            return redirect()->route('frontend.home');
+        }
     }
 
     public function updateCart(Request $request)
@@ -91,5 +135,15 @@ class frontendController extends Controller
     public function storeCustom(Request $request)
     {
         dd($request->all());
+    }
+
+    public function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return strtoupper($randomString);
     }
 }
