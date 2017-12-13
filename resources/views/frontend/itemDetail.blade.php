@@ -10,6 +10,10 @@
 	.upper-case {
 		text-transform: uppercase;
 	}
+	.menu-img{
+		width: 100%;
+		height: 200px;
+	}
 </style>
 @endpush
 @section('content')
@@ -44,7 +48,7 @@
 			@foreach($suggests as $index => $item)
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="container cursor-pointer" id="onclick" data-href="{{ route('frontend.product', ['id' => $item->id]) }}">
-						<img src="{{ $item->cover }}" class="img-responsive" />
+						<img src="{{ $item->cover }}" class="img-responsive menu-img" />
 						<h3 class="text-center">{{ $item->name }}</h3>
 						<h3 class="text-center">Rp.{{ number_format($item->price, 2, '.', ',') }}</h3>
 					</div>

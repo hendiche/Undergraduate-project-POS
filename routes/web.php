@@ -29,6 +29,11 @@ Route::get('/contact',function() {
 	return view('frontend.contact');
 })->name('frontend.contact');
 
+Route::get('/menu',function(){
+	$menu = App\Models\Menu::all();
+	return view('frontend.menu')->with('menu',$menu);
+})->name('frontend.menu');
+
 
 Route::get('/product/{id}', 'frontendController@toDetails')->name('frontend.product');
 Route::get('/menu/custom', 'frontendController@toCustom')->name('frontend.custom');
