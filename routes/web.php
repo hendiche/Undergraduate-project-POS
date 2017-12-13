@@ -15,7 +15,10 @@ use App\Models\Menu;
 Auth::routes();
 
 Route::get('/', function() {
-	return view('frontend.homepage')->with('sliders',Slider::get())->with('menus', Menu::limit(4)->orderBy('id', 'desc')->get());
+	return view('frontend.homepage')
+		->with('sliders',Slider::get())
+		->with('menus', Menu::limit(4)->orderBy('id', 'desc')
+		->get());
 })->name('frontend.home');
 
 Route::get('/about',function() {
@@ -26,10 +29,17 @@ Route::get('/contact',function() {
 	return view('frontend.contact');
 })->name('frontend.contact');
 
+Route::get('/menu',function(){
+	$menu = App\Models\Menu::all();
+	return view('frontend.menu')->with('menu',$menu);
+})->name('frontend.menu');
+
 
 Route::get('/product/{id}', 'frontendController@toDetails')->name('frontend.product');
-Route::get('/cartlist', 'frontendController@cartList')->name('frontend.cartlist');
+Route::get('/menu/custom', 'frontendController@toCustom')->name('frontend.custom');
+Route::post('/menu/custom/store', 'frontendController@storeCustom')->name('frontend.store.custom');
 
+Route::get('/cartlist', 'frontendController@cartList')->name('frontend.cartlist');
 Route::post('/cart', 'frontendController@addToCart')->name('frontend.add_to_cart');
 Route::get('/deleteItem/{rowId}', 'frontendController@removeCart')->name('frontend.remove_cart');
 Route::get('/checkout', 'frontendController@checkoutCart')->name('frontend.checkout');

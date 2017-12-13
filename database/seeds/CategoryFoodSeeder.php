@@ -12,36 +12,40 @@ class CategoryFoodSeeder extends Seeder
      */
     public function run()
     {
+    	$cate = new Category();
+    	$cate->name = 'Rice';
+    	$cate->save();
+
         $cate = new Category();
-        $cate->name = 'Beef'
+        $cate->name = 'Beef';
         $cate->save();
 
         $cate = new Category();
-        $cate->name = 'Chicken'
+        $cate->name = 'Chicken';
         $cate->save();
 
         $cate = new Category();
-        $cate->name = 'Seafood'
+        $cate->name = 'Seafood';
         $cate->save();
 
         $cate = new Category();
-        $cate->name = 'Vegetarian'
+        $cate->name = 'Vegetarian';
         $cate->save();
 
         $cate = new Category();
-        $cate->name = 'Side Dishes'
+        $cate->name = 'Side Dishes';
         $cate->save();
 
         $cate = new Category();
-        $cate->name = 'Dessert'
+        $cate->name = 'Dessert';
         $cate->save();
 
         $cate = new Category();
-        $cate->name = 'Hot Drinks'
+        $cate->name = 'Hot Drinks';
         $cate->save();
 
         $cate = new Category();
-        $cate->name = 'Cold Drinks'
+        $cate->name = 'Cold Drinks';
         $cate->save();
     }
 }

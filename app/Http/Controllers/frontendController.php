@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Cart;
 use App\Models\Menu;
+use App\Models\Food;
 
 class frontendController extends Controller
 {
@@ -64,5 +65,31 @@ class frontendController extends Controller
             'carts' => $carts,
             'total' => $total
         ], 200);
+    }
+
+    public function toCustom()
+    {
+        $rice = Food::where('category_id', '=', '1')->get();
+        $beefs = Food::where('category_id', '=', '2')->get();
+        $chickens = Food::where('category_id', '=', '3')->get();
+        $seafoods = Food::where('category_id', '=', '4')->get();
+        $veges = Food::where('category_id', '=', '5')->get();
+        $sides = Food::where('category_id', '=', '6')->get();
+
+        $custom = [
+            "rices" => $rice,
+            "beefs" => $beefs,
+            "chickens" => $chickens,
+            "seafoods" => $seafoods,
+            "vegetables" => $veges,
+            "side_dishes" => $sides,
+        ];
+
+        return view('frontend.custom')->with('custom', $custom);
+    }
+
+    public function storeCustom(Request $request)
+    {
+        dd($request->all());
     }
 }
