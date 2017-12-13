@@ -156,6 +156,8 @@
 				{{ Form::submit('CONFIRM', ['class' => 'btn btn-success no-border-radius']) }}
 				{!! Form::close() !!}
 			</div>
+			<br />
+			<br />
 		</div>
 	</section>
 @endsection

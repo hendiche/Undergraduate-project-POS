@@ -180,26 +180,6 @@
         $('.mpsi-loading-page').css('display', 'none');
         $('.mpsi-page').css('display', 'block');
         $('.mpsi-page').addClass('mpsi-page-animation');
-        
-        $('#myCarousel')
-        .mouseenter(function() {
-            $('.mpsi-left-carousel').addClass('animated fadeInLeft').css('display', 'block');
-            $('.mpsi-right-carousel').addClass('animated fadeInRight').css('display', 'block');
-        })
-        .mouseleave(function() {
-            $('.mpsi-left-carousel').addClass('fadeOutLeft').removeClass('fadeInLeft');
-            // $('.mpsi-left-carousel').removeClass('animated fadeInLeft mpsi-animation-duration').css('visibility', 'hidden');
-            $('.mpsi-right-carousel').addClass('fadeOutRight').removeClass('fadeInRight');
-            setTimeout(function() {
-                $('.mpsi-left-carousel').removeClass('animated fadeOutLeft').css('display', 'none');
-                $('.mpsi-right-carousel').removeClass('animated fadeOutRight').css('display', 'none');
-            }, 350);
-        });
-
-        $('.carousel').carousel({
-            interval: 2000
-        });
-        $('.carousel-control.right').trigger('click');
     });
 </script>
 @endpush
