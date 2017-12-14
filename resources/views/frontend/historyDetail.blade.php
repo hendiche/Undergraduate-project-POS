@@ -19,11 +19,23 @@
 	#cart-list .image {
 		padding-left: 5px !important;
 	}
+	div.alert {
+		margin-top: 30px;
+	}
+	div.alert a {
+		font-size: 30px;
+	}
 </style>
 @endpush
 @section('content')
 <section>
 	<div class="container">
+		@if(session('message'))
+            <div class="alert alert-success alert-dismissable fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <span><strong>Success!</strong> {{ session('message') }}</span>
+            </div>
+        @endif
 		<h1 class="text-center">HISTORY DETAILS</h1>
 		<hr />
 		<div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12">
@@ -33,7 +45,11 @@
 			</div>
 			<div class="d-flex">
 				<div><h3>Name</h3></div>
-				<div><h3>: {{ ucfirst($detail->user->name) }}</h3></div>
+				@if ($detail->type == 'user')
+					<div><h3>: {{ ucfirst($detail->user->name) }}</h3></div>
+				@else
+					<div><h3>: {{ ucfirst($detail->guest->name) }}</h3></div>
+				@endif
 			</div>
 			<div class="d-flex">
 				<div><h3>Date Order</h3></div>

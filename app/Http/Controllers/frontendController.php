@@ -9,6 +9,7 @@ use App\Models\Menu;
 use App\Models\Food;
 use App\Models\Guest;
 use App\Models\Purchase;
+use App\Models\Custom;
 use App\Helpers\Enums\PurchaseType;
 use App\Helpers\Enums\PurchaseStatus;
 
@@ -91,7 +92,8 @@ class frontendController extends Controller
                 }
             }
             Cart::destroy();
-            return redirect()->route('frontend.home');
+            return redirect()->route('frontend.history.detail', ['id' => $purchase->id])
+                ->with('message', 'Your purchase has successfully!!!, Our admin will process it.');
         }
     }
 
@@ -149,7 +151,37 @@ class frontendController extends Controller
 
     public function storeCustom(Request $request)
     {
-        dd($request->all());
+        $total = 0;
+        foreach($request->foods as $item) {
+            if ((int)$item['qty'] > 0) {
+                $food = Food::findOrFail($item['value']);
+                $subtotal = (int)$item['qty'] * $food->price;
+                $total += $subtotal;
+            }
+        }
+        $custom = new Custom();
+        $custom->total = $total;
+        if ($custom->save()) {
+            foreach($request->foods as $item) {
+                if ((int)$item['qty'] > 0) {
+                    $food = Food::findOrFail($item['value']);
+                    $custom->foods()->attach($item['value'], ['quantity' => $item['qty'], 'subtotal' => ((int)$item['qty'] * $food->price)]);
+                }
+            }
+        }
+
+        Cart::add([
+            'id' => $custom->id,
+            'name' => 'Custom Menu',
+            'price' => $custom->total,
+            'qty' => 1,
+            'options' => [
+                'cover' => 'no_img_custom.jpg',
+                'type' => 'custom'
+                ]
+        ]);
+
+        return redirect()->route('frontend.menu')->with('message', 'Your Custom Menu has successfully added to your cart!!!');
     }
 
     public function generateRandomString($length = 10) {

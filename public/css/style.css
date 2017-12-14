@@ -35,6 +35,9 @@ body {
 .fc-black {
 	color: #000000;
 }
+.fc-white {
+	color: #ffffff;
+}
 
 .cursor-pointer {
 	cursor: pointer;

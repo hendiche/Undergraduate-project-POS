@@ -47,11 +47,26 @@
     #menu-container {
         margin: 20px 0;
     }
+    div.alert {
+        margin-top: -35px;
+        margin-bottom: 10px;
+        margin-right: 15px;
+        margin-left: 15px;
+    }
+    div.alert a {
+        font-size: 30px;
+    }
 </style>
 @endpush
 @section('content')
 <section id="menu">
 	<div class="container-fuid">
+        @if(session('message'))
+            <div class="alert alert-success alert-dismissable fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <span><strong>Success!</strong> {{ session('message') }}</span>
+            </div>
+        @endif
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="col-md-12 col-sm-12 col-xs-12 text-right">
                 <a href="{{ route('frontend.custom') }}" class="fa fa-cutlery food"> Custom Menu</a>

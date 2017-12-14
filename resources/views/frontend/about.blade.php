@@ -1,6 +1,43 @@
 @extends('master.index')
 @push('pageStyle')
 <style type="text/css">
+	.parallax {
+	    /* The image used */
+	    background-image: url({{ asset('images/About_Banner_Img.jpg')  }});
+
+	    /* Full height */
+	    height: 550px;
+
+	    /* Create the parallax scrolling effect */
+	    background-attachment: fixed;
+	    background-position: center;
+	    background-repeat: no-repeat;
+	    background-size: cover;
+	}
+	.overlay {
+		background: rgba(0, 0, 0, 0.5);
+		width: 100%;
+		height: 550px;
+		padding: 200px 0;
+	}
+	.overlay h1, .overlay h4, .overlay .mpsi-hr {
+		position: relative;
+		top: 45%;
+	}
+	.mpsi-hr i {
+		font-size: larger;
+	}
+	.mpsi-hr::before , .mpsi-hr::after {
+		margin-right: 30px;
+		margin-left: 30px;
+	}
+	/* Turn off parallax scrolling for tablets and phones. Increase the pixels if needed */
+	@media only screen and (max-device-width: 1024px) {
+	    .parallax {
+	        background-attachment: scroll;
+	    }
+	}
+
     .panel-heading.cursor-pointer.hvr-buzz-out {
         display: block;
     }
@@ -23,16 +60,32 @@
     	margin : 5px 2px;
     	border-radius:50%;
     }
-    .fa{
+    #score {
+    	padding: 50px 0;
+    }
+    #score .fa {
     	background-color: #17A827;
     	color: #ffffff;
     }
-    .fa:hover{
+    #score .fa:hover{
     	color: #ffffff;
     }
 </style>
 @endpush
 @section('content')
+<div class="parallax">
+	<div class="overlay">
+		<h1 class="fc-white text-center fs-45">ABOUT US</h1>
+		<div class="mpsi-hr text-center">
+	        <i class="fa fa-star" aria-hidden="true"></i>
+	        <i class="fa fa-star" aria-hidden="true"></i>
+	        <i class="fa fa-star" aria-hidden="true"></i>
+	        <i class="fa fa-star" aria-hidden="true"></i>
+	        <i class="fa fa-star" aria-hidden="true"></i>
+	    </div>
+		<h4 class="fc-white text-center">Sari ratu is a casual fine dining restaurant</h4>
+	</div>
+</div>
 <section id="menu">
 	<div class="container-fluid">
 		<div class="col-md-12 col-sm-12 col-xs-12">
@@ -144,9 +197,8 @@
 			</div>
 		</div>
 	</div>
-	</div>
 </section>
-<section>
+<section id="score">
 	<div class="container-fluid">
 		<div class="col-md-12 col-sm-12 col-xs-12 text-center">
 			<br>
