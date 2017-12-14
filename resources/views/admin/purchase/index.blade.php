@@ -3,7 +3,7 @@
 Purchases
 @endsection
 @section('add_button')
-    {{-- <a href="{{ route('purchase.create') }}" class="btn btn-round btn-info">Add Purchase</a> --}}
+    <a href="{{ route('purchase.export') }}" class="btn btn-round btn-info">Export Data</a>
 @endsection
 @section('top_title')
 Purchase Table
@@ -16,6 +16,7 @@ Purchase Table
       <th>Customer</th>
       <th>Note</th>
       <th>Total</th>
+      <th>Date</th>
       <th>Status</th>
       <th>Action</th>
     </tr>
@@ -49,6 +50,7 @@ Purchase Table
             { data: 'customer' , name: 'customer'},
             { data: 'note' , name: 'note'},
             { data: 'total' , name: 'total'},
+            { data: 'created_at' , name: 'created_at'},
             { data: 'status' , name: 'status'},
             { data: 'action', name: 'action', orderable: false, searchable: false },
 
