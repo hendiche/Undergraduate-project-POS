@@ -117,7 +117,23 @@ class AdminController extends MasterController
                 return '<p style="color:green"> <strong>'.PurchaseStatus::getString($model->status).'</strong></p>';
             })
             ->addColumn('order', function($model) {
-                return '';
+                $order = '';
+                foreach ($model->customs()->get() as $key => $customs) {
+                    $order .= '<p> <strong> Custom No.'.$customs->id.' x '.$customs->pivot->quantity.'</strong></p><ul>';
+                    foreach ($customs->foods()->get() as $key => $custom) {
+                        $order.= '<li>'.$custom->name.'</li>';
+                    }
+                    $order .= '</ul>';
+                }
+
+                foreach ($model->menus()->get() as $key => $menus) {
+                    $order .= '<p> <strong>'.$menus->name.' x '.$menus->pivot->quantity.'</strong></p><ul>';
+                    foreach ($menus->foods()->get() as $key => $menu) {
+                        $order.= '<li>'.$menu->name.'</li>';
+                    }
+                    $order .= '</ul>';
+                }
+                return $order;
             })
             ->rawColumns(['action','order','status'])
             ->make(true);
