@@ -13,6 +13,8 @@ use App\Models\Custom;
 use App\Models\Menu;
 use Route;
 use Datatables;
+use PDF;
+use View;
 
 class AdminController extends MasterController
 {
@@ -31,6 +33,31 @@ class AdminController extends MasterController
         return $this->dataTableMaker($builder);
     }
 
+    public function goReceipt() {
+        $purchase = Purchase::find(8);
+        return view('admin.receipt')->with('purchase',$purchase);
+    }
+
+    public function changeStatus($model) {
+        $model = Purchase::find($model);
+        if ($model->status == 0) {
+            $model->status = 1;
+
+        } else {
+            $model->status = 0;
+        }
+        $model->save();
+        return back();
+    }
+
+    public function getReceipt($model) {
+        $model = Purchase::find($model);
+        $html = View::make('admin.receipt')
+            ->with('purchase',$model)
+            ->render();
+        $pdf = PDF::loadHTML($html);
+        return $pdf->download('Receipt.pdf');
+    }
     public function prepareDataTable($model)
     {
         return Datatables::of($model::query()->where('status',PurchaseStatus::UNCOMPLETED));
@@ -58,7 +85,7 @@ class AdminController extends MasterController
     	if (!$model) {
     		$model = new Purchase();
     	}
-    	$model->number = 'asdf';
+    	$model->number = $this->generateRandomString();
     	$model->total = 0;
     	$model->type = PurchaseStatus::UNCOMPLETED;
     	$model->note = $request->note;
@@ -96,6 +123,17 @@ class AdminController extends MasterController
         return $this->sendSuccessResponse();
     }
 
+    public function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return strtoupper($randomString);
+    }
+
+
     public function create()
     {
         $view = property_exists($this, 'create_view') ? $this->create_view : $this->form_view;
@@ -108,7 +146,7 @@ class AdminController extends MasterController
     {    
         return $builder
             ->addColumn("action", function ($model) {
-                return $this->makeActionButtonsForDataTable($model).'<a class="btn btn-primary" href="mark/'.$model->id.'"><i class="fa fa-exchange" aria-hidden="true"></i> Change Status</a>';
+                return $this->makeActionButtonsForDataTable($model).'<a class="btn btn-primary" href="mark/'.$model->id.'"><i class="fa fa-exchange" aria-hidden="true"></i> Change Status</a>'.'<a class="btn btn-success" href="receipt/'.$model->id.'"><i class="fa fa-download" aria-hidden="true"></i> Print Receipt</a>';
             })
             ->editColumn('status', function ($model) {
                 if ($model->status == 0) {

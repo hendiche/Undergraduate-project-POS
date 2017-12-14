@@ -42,25 +42,26 @@ class PurchaseController extends MasterController
     public function exportData() {
         $purchases = Purchase::get();
         $data = [];
-        foreach ($purchases as $key => $purchase) {
-            $customer = '';
+        // foreach ($purchases as $key => $purchase) {
+        //     $customer = '';
 
-            if ($purchase->type == PurchaseType::USER) {
-                $customer = $purchase->user->name;
-            } else {
-                $customer = $purchase->guest->name;
-            }
+        //     if ($purchase->type == PurchaseType::USER) {
+        //         $customer = $purchase->user->name;
+        //     } else {
+        //         $customer = $purchase->guest->name;
+        //     }
 
-            // $data[] = [
-            //     "Number"=>$purchase->number,
-            //     "Customer"=>$customer,
-            //     "Note"=>$purchase->note,
-            //     "Total"=>$purchase->total,
-            //     "Date"=>$purchase->created_at->format('d M Y'),
-            //     "status"=>PurchaseStatus::getString($purchase->status)
-            // ];
-            $data = $purchases;
-        }
+        //     // $data[] = [
+        //     //     "Number"=>$purchase->number,
+        //     //     "Customer"=>$customer,
+        //     //     "Note"=>$purchase->note,
+        //     //     "Total"=>$purchase->total,
+        //     //     "Date"=>$purchase->created_at->format('d M Y'),
+        //     //     "status"=>PurchaseStatus::getString($purchase->status)
+        //     // ];
+            
+        // }
+        $data = $purchases;
         Excel::create('Sutibun Nasi Padang', function($excel) use ($data) {
             $excel->sheet('Purchases', function($sheet) use($data) {
                 // $sheet->fromArray($data);
