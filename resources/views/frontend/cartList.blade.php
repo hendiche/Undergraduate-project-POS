@@ -22,6 +22,12 @@
 				<span><strong>Success!</strong> {{ session('message') }}</span>
 			</div>
 		@endif
+		@if(session('error'))
+			<div class="alert alert-warning alert-dismissable fade in">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<span><strong>Warning!</strong> {{ session('error') }}</span>
+			</div>
+		@endif
 		<h1>Your Cart</h1>
 		<hr />
 		<div class="table-responsive">

@@ -56,6 +56,10 @@ class frontendController extends Controller
 
     public function checkoutCart()
     {
+        $cart = Cart::content();
+        if (!count($cart)) {
+            return back()->withInput()->with('error', 'Please add some cart before checkout!!!');
+        }
     	return view('frontend.checkout');
     }
 
