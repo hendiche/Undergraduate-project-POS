@@ -12,6 +12,7 @@ use App\Models\Purchase;
 use App\Models\Custom;
 use App\Helpers\Enums\PurchaseType;
 use App\Helpers\Enums\PurchaseStatus;
+use Illuminate\Support\Facades\Validator;
 
 class frontendController extends Controller
 {
@@ -60,17 +61,22 @@ class frontendController extends Controller
 
     public function checkoutStore(Request $request)
     {
-        $cart = Cart::content();
-        $total = 0;
-        foreach($cart as $item) {
-            $total += ($item->price * $item->qty);
-        }
         if (!Auth::check()) {
+            Validator::make($request->all(), [
+                'name' => 'required',
+                'phone' => 'required',
+                'address' => 'required'
+            ])->validate();
             $guest = new Guest();
             $guest->name = $request->name;
             $guest->phone = $request->phone;
             $guest->address = $request->address;
             $guest->save();
+        }
+        $cart = Cart::content();
+        $total = 0;
+        foreach($cart as $item) {
+            $total += ($item->price * $item->qty);
         }
         $purchase = new Purchase();
         $purchase->total = $total;
@@ -158,6 +164,9 @@ class frontendController extends Controller
                 $subtotal = (int)$item['qty'] * $food->price;
                 $total += $subtotal;
             }
+        }
+        if ($total == 0) {
+            return back()->withInput()->with('error', 'Please add some quantity to your food!!!');
         }
         $custom = new Custom();
         $custom->total = $total;

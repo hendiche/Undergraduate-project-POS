@@ -56,8 +56,8 @@
 								<div>Rp.{{ number_format($cart->subtotal, 2, ",", ".") }}</div>
 							</td>
 							<td class="delete text-right">
-								<a href="#" id="remove">
-									<span style="display: none;">{{ route('frontend.remove_cart', ['rowId' => $cart->rowId]) }}</span>
+								<a href="#" id="remove" onclick="removeCart('{{ $cart->rowId }}')">
+									{{-- <span style="display: none;">{{ route('frontend.remove_cart', ['rowId' => $cart->rowId]) }}</span> --}}
 									<i class="fa fa-times" aria-hidden="true"></i>
 								</a>
 							</td>
@@ -151,17 +151,17 @@
     	});
     }
 
+    function removeCart(rowId) {
+    	var url = '{{ route('frontend.remove_cart', ['rowId' => 'REMOVEROWID']) }}';
+    	url = url.replace('REMOVEROWID', rowId);
+    	$('#confirm').attr('href', url);
+    	$('#myModal').modal();
+    }
+
 	$(document).ready(function() {
 		$('.mpsi-loading-page').css('display', 'none');
         $('.mpsi-page').css('display', 'block');
         $('.mpsi-page').addClass('mpsi-page-animation');
-        
-
-        $('#remove').on('click', function() {
-        	var url = $(this).children('span').html();
-        	$('#confirm').attr('href', url);
-        	$('#myModal').modal();
-        });
 	});
 
 	function renderTbody(data) {
@@ -192,7 +192,7 @@
 						<div>Rp.'+ (subtotal).formatMoney(2, ".", ",") +'</div>\
 					</td>\
 					<td class="delete text-right">\
-						<a href="#" id="remove">\
+						<a href="#" id="remove" onclick="removeCart(\''+ item.rowId +'\')">\
 							<span style="display: none;">'+ url +'</span>\
 							<i class="fa fa-times" aria-hidden="true"></i>\
 						</a>\
