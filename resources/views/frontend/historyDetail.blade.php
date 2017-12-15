@@ -92,7 +92,7 @@
 							<td class="image">
 								<img src="{{ $custom->cover }}">
 							</td>
-							<td><h4>{{ $custom->name }}</h4></td>
+							<td><h4>MENU CUSTOM</h4></td>
 							<td>Rp {{ number_format($custom->total, 2, ',', '.') }}</td>
 							<td>{{ $custom->pivot->quantity }}</td>
 							<td>Rp {{ number_format($custom->pivot->subtotal, 2, ',', '.') }}</td>

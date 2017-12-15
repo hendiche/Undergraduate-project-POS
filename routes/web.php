@@ -17,7 +17,7 @@ Auth::routes();
 Route::get('/', function() {
 	return view('frontend.homepage')
 		->with('sliders',Slider::get())
-		->with('menus', Menu::limit(4)->orderBy('id', 'desc')
+		->with('menus', Menu::where('status', '=', '1')->limit(4)->orderBy('id', 'desc')
 		->get());
 })->name('frontend.home');
 
@@ -30,7 +30,7 @@ Route::get('/contact',function() {
 })->name('frontend.contact');
 
 Route::get('/menu',function(){
-	$menu = App\Models\Menu::all();
+	$menu = Menu::where('status', '=', '1')->get();
 	return view('frontend.menu')->with('menu',$menu);
 })->name('frontend.menu');
 

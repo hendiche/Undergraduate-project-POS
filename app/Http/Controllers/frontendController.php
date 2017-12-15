@@ -140,12 +140,12 @@ class frontendController extends Controller
 
     public function toCustom()
     {
-        $rice = Food::where('category_id', '=', '1')->get();
-        $beefs = Food::where('category_id', '=', '2')->get();
-        $chickens = Food::where('category_id', '=', '3')->get();
-        $seafoods = Food::where('category_id', '=', '4')->get();
-        $veges = Food::where('category_id', '=', '5')->get();
-        $sides = Food::where('category_id', '=', '6')->get();
+        $rice = Food::where('category_id', '=', '1')->where('status', '=', '1')->get();
+        $beefs = Food::where('category_id', '=', '2')->where('status', '=', '1')->get();
+        $chickens = Food::where('category_id', '=', '3')->where('status', '=', '1')->get();
+        $seafoods = Food::where('category_id', '=', '4')->where('status', '=', '1')->get();
+        $veges = Food::where('category_id', '=', '5')->where('status', '=', '1')->get();
+        $sides = Food::where('category_id', '=', '6')->where('status', '=', '1')->get();
 
         $custom = [
             "rices" => $rice,
