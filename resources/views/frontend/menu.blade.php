@@ -7,10 +7,12 @@
     .menu-img{
         width: 100%;
         height: 200px;
+        object-fit: cover;
     }
     .name-desc{
         background-color:  #ffffff;
         text-align: center;
+        padding: 15px;
     }
     .name-desc h4{
         margin-left: 10px;
@@ -42,18 +44,36 @@
         color: #999999;
          text-decoration: none;
     }
+    #menu-container {
+        margin: 20px 0;
+    }
+    div.alert {
+        margin-top: -35px;
+        margin-bottom: 10px;
+        margin-right: 15px;
+        margin-left: 15px;
+    }
+    div.alert a {
+        font-size: 30px;
+    }
 </style>
 @endpush
 @section('content')
 <section id="menu">
 	<div class="container-fuid">
-        <div class="col-md-12 col-sm-6 col-xs-12">
-            <div class="col-md-12 col-sm-6 col-xs-12 text-right">
+        @if(session('message'))
+            <div class="alert alert-success alert-dismissable fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <span><strong>Success!</strong> {{ session('message') }}</span>
+            </div>
+        @endif
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-12 col-sm-12 col-xs-12 text-right">
                 <a href="{{ route('frontend.custom') }}" class="fa fa-cutlery food"> Custom Menu</a>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 col-sm-6 col-xs-12">        
+            <div class="col-md-12 col-sm-12 col-xs-12" id="menu-container">        
             @foreach($menu as $data)
                 <div class="col-md-3 col-sm-6 col-xs-12" id="menu-card">
                     <div class="image">
@@ -83,26 +103,6 @@
         $('.mpsi-loading-page').css('display', 'none');
         $('.mpsi-page').css('display', 'block');
         $('.mpsi-page').addClass('mpsi-page-animation');
-        
-        $('#myCarousel')
-        .mouseenter(function() {
-            $('.mpsi-left-carousel').addClass('animated fadeInLeft').css('display', 'block');
-            $('.mpsi-right-carousel').addClass('animated fadeInRight').css('display', 'block');
-        })
-        .mouseleave(function() {
-            $('.mpsi-left-carousel').addClass('fadeOutLeft').removeClass('fadeInLeft');
-            // $('.mpsi-left-carousel').removeClass('animated fadeInLeft mpsi-animation-duration').css('visibility', 'hidden');
-            $('.mpsi-right-carousel').addClass('fadeOutRight').removeClass('fadeInRight');
-            setTimeout(function() {
-                $('.mpsi-left-carousel').removeClass('animated fadeOutLeft').css('display', 'none');
-                $('.mpsi-right-carousel').removeClass('animated fadeOutRight').css('display', 'none');
-            }, 350);
-        });
-
-        $('.carousel').carousel({
-            interval: 2000
-        });
-        $('.carousel-control.right').trigger('click');
     });
 </script>
 @endpush

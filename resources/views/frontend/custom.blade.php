@@ -25,11 +25,23 @@
 		display: table-cell;
 		vertical-align: middle;
 	}
+	div.alert {
+		margin-top: 30px;
+	}
+	div.alert a {
+		font-size: 30px;
+	}
 </style>
 @endpush
 @section('content')
 	<section>
 		<div class="container">
+			@if(session('error'))
+				<div class="alert alert-warning alert-dismissable fade in">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<span><strong>Warning!</strong> {{ session('error') }}</span>
+				</div>
+			@endif
 			<h1>CUSTOM FOOD</h1>
 			<div>
 				@php
@@ -156,6 +168,8 @@
 				{{ Form::submit('CONFIRM', ['class' => 'btn btn-success no-border-radius']) }}
 				{!! Form::close() !!}
 			</div>
+			<br />
+			<br />
 		</div>
 	</section>
 @endsection

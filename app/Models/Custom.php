@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Base\BaseModel;
 use App\Models\Food;
+use App\Models\Purchase;
 use Illuminate\Database\Eloquent\Model;
 
 class Custom extends BaseModel
@@ -18,10 +19,10 @@ class Custom extends BaseModel
     ];
 
     public function foods() {
-    	return $this->belongsToMany(Food::class,'custom_foods');
+    	return $this->belongsToMany(Food::class,'custom_foods')->withPivot('quantity', 'subtotal');
     }
 
     public function purchase() {
-        return $this->belongsToMany(Purchase::class,'custom_purchases');
+        return $this->belongsToMany(Purchase::class,'custom_purchases')->withPivot('quantity', 'subtotal');
     }
 }

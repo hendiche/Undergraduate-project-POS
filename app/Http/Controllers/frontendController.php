@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 use Cart;
 use App\Models\Menu;
 use App\Models\Food;
+use App\Models\Guest;
+use App\Models\Purchase;
+use App\Models\Custom;
+use App\Helpers\Enums\PurchaseType;
+use App\Helpers\Enums\PurchaseStatus;
+use Illuminate\Support\Facades\Validator;
 
 class frontendController extends Controller
 {
@@ -46,9 +52,55 @@ class frontendController extends Controller
 
     public function checkoutCart()
     {
-    	Cart::destroy();
+        $cart = Cart::content();
+        if (!count($cart)) {
+            return back()->withInput()->with('error', 'Please add some cart before checkout!!!');
+        }
+    	return view('frontend.checkout');
+    }
 
-    	return redirect()->route('frontend.home');
+    public function checkoutStore(Request $request)
+    {
+        if (!Auth::check()) {
+            Validator::make($request->all(), [
+                'name' => 'required',
+                'phone' => 'required',
+                'address' => 'required'
+            ])->validate();
+            $guest = new Guest();
+            $guest->name = $request->name;
+            $guest->phone = $request->phone;
+            $guest->address = $request->address;
+            $guest->save();
+        }
+        $cart = Cart::content();
+        $total = 0;
+        foreach($cart as $item) {
+            $total += ($item->price * $item->qty);
+        }
+        $purchase = new Purchase();
+        $purchase->total = $total;
+        $purchase->number = $this->generateRandomString();
+        $purchase->status = PurchaseStatus::getString(0);
+        if (Auth::check()) {
+            $purchase->type = PurchaseType::getString(0);
+            $purchase->user_id = Auth::id();
+        } else {
+            $purchase->type = PurchaseType::getString(1);
+            $purchase->guest_id = $guest->id;
+        }
+        if ($purchase->save()) {
+            foreach($cart as $item) {
+                if ($item->options->type == 'menu') {
+                    $purchase->menus()->attach($item->id, ['quantity' => $item->qty, 'subtotal' => ($item->price * $item->qty)]);
+                } else if ($item->options->type == 'custom') {
+                    $purchase->customs()->attach($item->id, ['quantity' => $item->qty, 'subtotal' => ($item->price * $item->qty)]);
+                }
+            }
+            Cart::destroy();
+            return redirect()->route('frontend.history.detail', ['id' => $purchase->id])
+                ->with('message', 'Your purchase has successfully!!!, Our admin will process it.');
+        }
     }
 
     public function updateCart(Request $request)
@@ -67,14 +119,29 @@ class frontendController extends Controller
         ], 200);
     }
 
+    public function toHistory()
+    {
+        $purchases = Purchase::where('type', '=', PurchaseType::getString(0))
+            ->where('user_id', '=', Auth::id())
+            ->get();
+        return view('frontend.history')->with('histories', $purchases);
+    }
+
+    public function historyDetail($historyId) 
+    {
+        $purchase = Purchase::findOrFail($historyId);
+
+        return view('frontend.historyDetail')->with('detail', $purchase);
+    }
+
     public function toCustom()
     {
-        $rice = Food::where('category_id', '=', '1')->get();
-        $beefs = Food::where('category_id', '=', '2')->get();
-        $chickens = Food::where('category_id', '=', '3')->get();
-        $seafoods = Food::where('category_id', '=', '4')->get();
-        $veges = Food::where('category_id', '=', '5')->get();
-        $sides = Food::where('category_id', '=', '6')->get();
+        $rice = Food::where('category_id', '=', '1')->where('status', '=', '1')->get();
+        $beefs = Food::where('category_id', '=', '2')->where('status', '=', '1')->get();
+        $chickens = Food::where('category_id', '=', '3')->where('status', '=', '1')->get();
+        $seafoods = Food::where('category_id', '=', '4')->where('status', '=', '1')->get();
+        $veges = Food::where('category_id', '=', '5')->where('status', '=', '1')->get();
+        $sides = Food::where('category_id', '=', '6')->where('status', '=', '1')->get();
 
         $custom = [
             "rices" => $rice,
@@ -90,6 +157,39 @@ class frontendController extends Controller
 
     public function storeCustom(Request $request)
     {
-        dd($request->all());
+        $total = 0;
+        foreach($request->foods as $item) {
+            if ((int)$item['qty'] > 0) {
+                $food = Food::findOrFail($item['value']);
+                $subtotal = (int)$item['qty'] * $food->price;
+                $total += $subtotal;
+            }
+        }
+        if ($total == 0) {
+            return back()->withInput()->with('error', 'Please add some quantity to your food!!!');
+        }
+        $custom = new Custom();
+        $custom->total = $total;
+        if ($custom->save()) {
+            foreach($request->foods as $item) {
+                if ((int)$item['qty'] > 0) {
+                    $food = Food::findOrFail($item['value']);
+                    $custom->foods()->attach($item['value'], ['quantity' => $item['qty'], 'subtotal' => ((int)$item['qty'] * $food->price)]);
+                }
+            }
+        }
+
+        Cart::add([
+            'id' => $custom->id,
+            'name' => 'Custom Menu',
+            'price' => $custom->total,
+            'qty' => 1,
+            'options' => [
+                'cover' => 'no_img_custom.jpg',
+                'type' => 'custom'
+                ]
+        ]);
+
+        return redirect()->route('frontend.menu')->with('message', 'Your Custom Menu has successfully added to your cart!!!');
     }
 }

@@ -7,9 +7,9 @@
     <!-- Morris Charts JavaScript -->
     {!! Html::script('assets/vendor/raphael/raphael.min.js') !!}
     {!! Html::script('assets/vendor/morrisjs/morris.min.js') !!}
-    {!! Html::script('assets/data/morris-data.js') !!}
+    {{-- {!! Html::script('assets/data/morris-data.js') !!} --}}
     <!-- Custom Theme JavaScript -->
     {!! Html::script('assets/dist/js/sb-admin-2.js') !!}
     {!! Html::script('assets/date/bootstrap-datepicker.min.js') !!}
     <!--jquery-->
-    {!! Html::script('assets/date/js/jquery-3.2.1.js') !!}
+    {{-- {!! Html::script('assets/date/js/jquery-3.2.1.js') !!} --}}

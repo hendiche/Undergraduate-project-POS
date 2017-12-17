@@ -146,7 +146,7 @@
             @endforeach
         </div>
         <div class="text-center">
-            <a href="#" class="btn btn-success hvr-icon-wobble-horizontal mpsi-btn-more">MORE MENU</a>
+            <a href="{{ route('frontend.menu') }}" class="btn btn-success hvr-icon-wobble-horizontal mpsi-btn-more">MORE MENU</a>
         </div>
     </div>
 </section>
