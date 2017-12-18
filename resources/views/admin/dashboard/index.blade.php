@@ -14,6 +14,7 @@ Order Table
   <thead>
     <tr>
       <th>No.</th>
+      <th>Customer</th>
       <th>Status</th>
       <th>Order</th>
       <th>Note</th>
@@ -46,6 +47,7 @@ Order Table
         },
         columns: [
             { data: 'number' , name: 'number'},
+            { data: 'customer' , name: 'customer'},
             { data: 'status' , name: 'status'},
             { data: 'order' , name: 'order', orderable: false, searchable: false},
             { data: 'note' , name: 'note'},

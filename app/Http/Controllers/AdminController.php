@@ -60,7 +60,7 @@ class AdminController extends MasterController
     }
     public function prepareDataTable($model)
     {
-        return Datatables::of($model::query()->where('status',PurchaseStatus::UNCOMPLETED));
+        return Datatables::of($model::query()->orderBy('created_at','desc'));
     }
 
     public function dashboard() {
@@ -146,6 +146,9 @@ class AdminController extends MasterController
     {    
         return $builder
             ->addColumn("action", function ($model) {
+                if ($model->status == PurchaseStatus::UNCOMPLETED) {
+                    return $this->makeActionButtonsForDataTable($model).'<a class="btn btn-primary" href="mark/'.$model->id.'"><i class="fa fa-exchange" aria-hidden="true"></i> Change Status</a>';
+                } 
                 return $this->makeActionButtonsForDataTable($model).'<a class="btn btn-primary" href="mark/'.$model->id.'"><i class="fa fa-exchange" aria-hidden="true"></i> Change Status</a>'.'<a class="btn btn-success" href="receipt/'.$model->id.'"><i class="fa fa-download" aria-hidden="true"></i> Print Receipt</a>';
             })
             ->editColumn('status', function ($model) {
@@ -173,7 +176,25 @@ class AdminController extends MasterController
                 }
                 return $order;
             })
-            ->rawColumns(['action','order','status'])
+            ->addColumn('customer', function($model) {
+                $customer = '';
+                if ($model->user()->first()) {
+                    $customer .= '<ul>
+                    <li>Name: '.$model->user->name.'</li>
+                    <li>Phone: '.$model->user->phone.'</li>
+                    <li>Email: '.$model->user->email.'</li>
+                    <li>Address: '.$model->user->address.'</li>
+                    </ul>';
+                } else {
+                    $customer .= '<ul>
+                    <li>Name: '.$model->guest->name.'</li>
+                    <li>Phone: '.$model->guest->phone.'</li>
+                    <li>Address: '.$model->guest->address.'</li>
+                    </ul>';
+                }
+                return $customer;
+            })
+            ->rawColumns(['action','order','status','customer'])
             ->make(true);
     }
     public function logout() {

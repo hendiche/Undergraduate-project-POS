@@ -89,15 +89,15 @@
 				<div>
 					<div class="form-group">
 						<label for="name">Name:</label>
-						<input type="text" name="name" id="name" class="form-control" />
+						<input type="text" name="name" id="name" class="form-control" required />
 					</div>
 					<div class="form-group">
 						<label for="telp">Phone:</label>
-						<input type="number" name="phone" id="telp" class="form-control" />
+						<input type="number" name="phone" id="telp" class="form-control" required/>
 					</div>
 					<div class="form-group">
 						<label for="address">Address:</label>
-						<textarea name="address" class="form-control txt-area" id="address"></textarea>
+						<textarea name="address" class="form-control txt-area" id="address" required></textarea>
 					</div>
 				</div>
 			@endauth
