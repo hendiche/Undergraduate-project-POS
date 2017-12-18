@@ -68,12 +68,25 @@
 		</div>
 		<div>
 			<h3>USER DETAILS</h3>
+			<hr/>
+			{!! Form::open(['url' => route('frontend.store.checkout'), 'method' => 'POST']) !!}
 			@auth
-			<div>auth</div>
+			<div>
+				<div class="form-group">
+					<label>Name:</label>
+					<input type="text" value="{{ Auth::user()->name }}" class="form-control" readonly />
+				</div>
+				<div class="form-group">
+					<label>Phone:</label>
+					<input type="text" value="{{ Auth::user()->phone }}" class="form-control" readonly />
+				</div>
+				<div class="form-group">
+					<label>Address:</label>
+					<textarea class="form-control txt-area" readonly>{{ Auth::user()->address }}</textarea>
+				</div>
+			</div>
 			@else
 				<div>
-					<hr/>
-					{!! Form::open(['url' => route('frontend.store.checkout'), 'method' => 'POST']) !!}
 					<div class="form-group">
 						<label for="name">Name:</label>
 						<input type="text" name="name" id="name" class="form-control" />
@@ -86,10 +99,10 @@
 						<label for="address">Address:</label>
 						<textarea name="address" class="form-control txt-area" id="address"></textarea>
 					</div>
-					{{ Form::submit('CONFIRM', ['class' => 'btn btn-success btn-block no-border-radius']) }}
-					{!! Form::close() !!}
 				</div>
 			@endauth
+			{{ Form::submit('CONFIRM', ['class' => 'btn btn-success btn-block no-border-radius']) }}
+			{!! Form::close() !!}
 		</div>
 	</div>	
 </section>
