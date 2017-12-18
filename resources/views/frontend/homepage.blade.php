@@ -75,7 +75,7 @@
             </div>
             <div class="col-md-6 col-sm-12 col-xs-12" id="about-right">
                 <div class="text-center">
-                    <h1 class="no-margin-top">Sari ratu is a Authentic NASI PADANG</h1>
+                    <h1 class="no-margin-top">Sutibun is an Authentic Classic Nasi Padang</h1>
                     <div class="mpsi-hr">
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
@@ -96,10 +96,10 @@
                         </div>
                         <div class="panel panel-default">
                           <div class="panel-heading cursor-pointer hvr-buzz-out" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-                            <h4 class="panel-title">Parking Facilitis</h4>
+                            <h4 class="panel-title">Parking Facilities</h4>
                           </div>
                           <div id="collapse2" class="panel-collapse collapse">
-                            <div class="panel-body">Car Parking / 2 wheeler parking is Avilable for customers.</div>
+                            <div class="panel-body">Car Parking / 2 wheeler parking is Available for customers.</div>
                           </div>
                         </div>
                         <div class="panel panel-default">

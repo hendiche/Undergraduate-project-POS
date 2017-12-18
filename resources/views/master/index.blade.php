@@ -142,32 +142,30 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-sm-12 col-xs-12 col-md-offset-1">
-                        <h2>Sari Ratu Restaurant</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu nulla, feugiat at lectus nec, tempor accumsan metus. Vivamus tempus, diam sit amet condimentum pretium, metus magna ornare lectus, ut interdum lorem orci vitae purus. Etiam eleifend vulputate sapien at porta</p>
+                        <h2>SUTIBUN NASI PADANG</h2>
+                        <p>A VERY FINE nasi padang restaurant that serves people with a smile, delicious dishes from Padang City, West of Sumatra, and variety kinds of sambals which give strong flavors for people when eaten with plain white rice. </p>
                     </div>
                     <div class="col-md-3 col-sm-12 col-xs-12">
                         <h2>Our Locations</h2>
-                        <div class="mpsi-footer-subtitle">Singapore</div> <!-- ref: https://netdna.webdesignerdepot.com/uploads/dark_web_design/color.jpg -->
+                        <div class="mpsi-footer-subtitle">BATAM</div> <!-- ref: https://netdna.webdesignerdepot.com/uploads/dark_web_design/color.jpg -->
                         <p>
-                            #20 Pahang Street,<br/>
-                            Singapore 198617.<br/>
-                            Telp: +65 6294 9983.<br/>
-                            Fax: +65 6294 9913<br/>
+                            Jalan Gajah Mada, Sei Ladi, Tiban Indah, Sekupang, Kota Batam,<br/>
+                            Kepulauan Riau 29442.<br/>
+                            Telp1: +62811 2233 4455.<br/>
+                            Telp2: +62866 7788 9900<br/>
+                            Email1: sutibun@NasiPadang.com<br/>
+                            Email2: abun@PadangPeng.com<br/>
                             <br/>
-                            304, orchard Road.<br/>
-                            #02-107 Lucky Plaze,<br/>
-                            Singapore.<br/>
-                            Telp: +55 6294 9983.<br/>
                         </p>
                     </div>
                     <div class="col-md-3 col-sm-12 col-xs-12">
                         <h2>Opening Hours</h2>
                         <div class="mpsi-footer-subtitle">Everyday</div>
-                        <p>10:00 AM - 09:00 PM</p>
+                        <p>10:00 AM - 11:00 PM</p>
                     </div>
                 </div>
                 <div class="text-center copyright">
-                    <h4>&copy; 2017 SARI RATU, ALL RIGHTS RESERVED.</h4>
+                    <h4>&copy; 2017 SUTIBUN NASI PADANG, ALL RIGHTS RESERVED.</h4>
                 </div>
             </div>
         </section>

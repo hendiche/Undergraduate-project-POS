@@ -83,7 +83,7 @@
 	        <i class="fa fa-star" aria-hidden="true"></i>
 	        <i class="fa fa-star" aria-hidden="true"></i>
 	    </div>
-		<h4 class="fc-white text-center">Sari ratu is a casual fine dining restaurant</h4>
+		<h4 class="fc-white text-center">Sutibun is a VERY FINE dining restaurant</h4>
 	</div>
 </div>
 <section id="menu">
@@ -91,30 +91,23 @@
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<div class="col-md-6 col-sm-12 col-xs-12">
 				<h3>ABOUT MASAKAN PADANG</h3>
-				<P style="border-right-style: solid; border-right-color: #ffffff;">
+				<P style="border-right-style: solid; border-right-color: #ffffff; ">
 					Nasi Padang is a Padang steamed rice served with various choices of pre-cooked dishes originated from West Sumatra, Indonesia. It is known across Indonesia as Nasi Padang, after the city of Padang the capital of West Sumatra province. Nasi Padang (Padang-style rice) is a miniature banquet of meats, fish, vegetables, and spicy sambals eaten with plain white rice, it is Sumatra's most famous export and the Minangkabau's great contribution to Indonesian cuisine.
-
+					<br>
 					A Padang restaurant is usually easily distinguishable with their Rumah Gadang style facade and their typical window display. Nasi Padang window display in front of restaurant usually consists of stages and rows of carefully arranged stacked bowls and plates, constructed and filled with various dishes. A Padang restaurant, especially small-to-medium ones, will also usually bear names in Minang language.
 				</P>
 			</div>
 			<div class="col-md-6 col-sm-12 col-xs-12">
 				<h3>Vision</h3>
-				<p style="border-right-style: solid; border-right-color: #17A827;">
-					Abun never give up, Abun never give up, Abun never give up, 
-					Abun never give up, Abun never give up, Abun never give up, 
-					Abun never give up, Abun never give up, Abun never give up, 
-					Abun never give up, Abun never give up, Abun never give up, 
-					Abun never give up, Abun never give up, Abun never give up, 
-					Abun never give up, Abun never give up, Abun never give up, 
+				<p style="border-right-style: solid; border-right-color: #17A827; text-align: justify;">
+					Life is all about enjoying delicious food <br>
+					WHY NOT ENJOY NASI PADANG FROM SUTIBUN PADANG PENG ?!
 				</p>
 				<h3>Mission</h3>
-				<p>
-					Abun never give up, Abun never give up, Abun never give up, 
-					Abun never give up, Abun never give up, Abun never give up, 
-					Abun never give up, Abun never give up, Abun never give up, 
-					Abun never give up, Abun never give up, Abun never give up, 
-					Abun never give up, Abun never give up, Abun never give up, 
-					Abun never give up, Abun never give up, Abun never give up, 
+				<p style="border-right-style: solid; border-right-color: #17A827; text-align: justify;">
+					To show the world of SUTIBUN NASI PADANG <br>
+					To bring the world together underneath of the name SUTIBUN NASI PADANG<br>
+					To carry title of best among the best nasi padang and that is SUTIBUN NASI PADANG<br>
 				</p>
 			</div>
 		</div>
@@ -133,7 +126,7 @@
 			<div class="col-md-2 col-sm-12 col-xs-12">
 				<img src="images/ab2.png" class="profil">
 				<h6>Name : Antoni</h6>
-				<h6>Job  : Design</h6>
+				<h6>Job  : Designer</h6>
 			</div>
 			<div class="col-md-2 col-sm-12 col-xs-12">
 				<img src="images/ab5.png" class="profil">
