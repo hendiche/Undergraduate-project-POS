@@ -47,6 +47,10 @@ class MenuController extends MasterController
     	if (!$model) {
     		$model = new Menu();
     	}
+
+        if ($model) {
+            $model->foods()->detach();
+        }
     	$model->name = $request->name;
     	$model->price = $request->price;
     	$model->status = $request->status;

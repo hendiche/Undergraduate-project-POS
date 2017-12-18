@@ -22,7 +22,7 @@ class Custom extends BaseModel
     	return $this->belongsToMany(Food::class,'custom_foods')->withPivot('quantity', 'subtotal');
     }
 
-    public function purchase() {
+    public function purchases() {
         return $this->belongsToMany(Purchase::class,'custom_purchases')->withPivot('quantity', 'subtotal');
     }
 }

@@ -32,6 +32,10 @@ class CustomController extends MasterController
     		$model = new Custom();
     	}
 
+        if ($model) {
+            $model->foods()->detach();
+        }
+
     	$model->total = 0;
 
         if (!$model->save()) {
@@ -42,9 +46,9 @@ class CustomController extends MasterController
 
         foreach ($request->food as $key => $value) {
         	$food = Food::find($value);
-        	$price = $food->price * 1;
+        	$price = $food->price * $request->quantity[$key];
         	$total += $price;
-        	$model->foods()->attach($value,['quantity' => 1,'subtotal' => $price]);
+        	$model->foods()->attach($value,['quantity' => $request->quantity[$key],'subtotal' => $price]);
         }
 
         $model->total = $total;
@@ -79,6 +83,19 @@ class CustomController extends MasterController
         $this->attributes['route'] = $this->getFormRoute();
 
         return $this->render(view($view))->with('food',Food::where('status',1)->pluck('name','id'));
+    }
+
+    public function destroy($model)
+    {
+        if (count($model->purchases()->get()) > 0) {
+            return redirect()->back()->withErrors('Cannot delete customs with a purchase');
+        }
+        $model->foods()->detach();
+        if (!$model->delete()) {
+            return $this->sendErrorResponse($model->errors());
+        }
+
+        return $this->sendSuccessResponse();
     }
 
     public function edit($model)
