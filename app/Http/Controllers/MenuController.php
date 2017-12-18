@@ -20,6 +20,21 @@ class MenuController extends MasterController
         'delete'
     ];
 
+    public function calculate(Request $request) {
+        $total = 0;
+        foreach ($request->foods as $key => $food) {
+            $findFood = Food::find($food);
+            if ($findFood) {
+                $total += $findFood->price * $request->quantities[$key];
+            }
+            
+        }
+        
+        return response($total);
+    }
+
+
+
     public function dataTable($model = null)
     {
         $builder = $this->prepareDataTable(Menu::class);
@@ -45,7 +60,7 @@ class MenuController extends MasterController
         foreach ($request->food as $key => $value) {
         	$food = Food::find($value);
         	$price = $food->price * $request->quantity[$key];
-        	$model->foods()->attach($value,['quantity' => 1,'subtotal' => $price]);
+        	$model->foods()->attach($value,['quantity' => $request->quantity[$key],'subtotal' => $price]);
         }
         
         return $this->sendSuccessResponse();
