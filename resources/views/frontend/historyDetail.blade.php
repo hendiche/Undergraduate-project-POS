@@ -90,7 +90,7 @@
 					@foreach($detail->customs as $index => $custom)
 						<tr>
 							<td class="image">
-								<img src="{{ $custom->cover }}">
+								<img src="{{ url('/images/no_img_custom.jpg') }}">
 							</td>
 							<td><h4>MENU CUSTOM</h4></td>
 							<td>Rp {{ number_format($custom->total, 2, ',', '.') }}</td>

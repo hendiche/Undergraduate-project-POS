@@ -189,7 +189,7 @@ class frontendController extends Controller
             'price' => $custom->total,
             'qty' => 1,
             'options' => [
-                'cover' => 'no_img_custom.jpg',
+                'cover' => url('/images/no_img_custom.jpg'),
                 'type' => 'custom'
                 ]
         ]);

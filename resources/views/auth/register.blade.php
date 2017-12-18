@@ -38,6 +38,32 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+
+                            <div class="col-md-6 col-md-offset-3">
+                                <input id="phone" type="number" class="form-control" placeholder="Phone" name="phone" value="{{ old('phone') }}" required>
+
+                                @if ($errors->has('phone'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('phone') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+
+                            <div class="col-md-6 col-md-offset-3">
+                                <input id="address" type="address" class="form-control" placeholder="Address" name="address" value="{{ old('address') }}" required>
+
+                                @if ($errors->has('address'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('address') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 
                             <div class="col-md-6 col-md-offset-3">
@@ -60,7 +86,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
-                                <button type="submit" class="btn btn-primary" style="background-color: #17A827;">
+                                <button type="submit" class="btn btn-primary btn-block" style="background-color: #17A827;">
                                     Register
                                 </button>
                             </div>

@@ -47,7 +47,7 @@
 						@foreach($carts as $key => $cart)
 						<tr>
 							<td class="image">
-								<img src="{{ $cart->options->cover }}" class="img-responsive" />
+								<img src="{{ $cart->options->cover }}" alt="No Image" class="img-responsive" />
 							</td>
 							<td class="product">
 								<div>{{ $cart->name }}</div>

@@ -14,8 +14,9 @@
 		</thead>
 
 		<tbody>
-			<tr>
+			
 			@foreach($purchases as $purchase)
+            <tr>
     			<td>{{$purchase->number}}</td>
     			@if($purchase->type == PurchaseType::USER)
     			<td>{{$purchase->user->name}}</td>
@@ -45,8 +46,9 @@
     				</ul>
     			</td>
     			<td>{{PurchaseStatus::getString($purchase->status)}}</td>
+                </tr>
     		@endforeach
-    		</tr>
+    		
 		</tbody>
 	</table>
 </html>
