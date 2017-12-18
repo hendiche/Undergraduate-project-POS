@@ -101,8 +101,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand hvr-pop" href="{{ route('frontend.home') }}">
-                        <img src="images/SNP.jpg" class="logo">
-                        <!-- <img src="{{ URL::asset('images/SNP.jpg') }}" class="logo" /> -->
+                        <img src="{{ url('/') }}/images/SNP.jpg" class="logo">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
