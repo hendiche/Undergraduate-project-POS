@@ -61,12 +61,6 @@ Menu Form
         </div>
     </div>
     <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Price</label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-           {{ Form::number('price', null, ['class' => 'form-control col-md-7 col-xs-12', 'placeholder' => 'Price','required'=>'required','min'=>'0']) }}
-        </div>
-    </div>
-    <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Status</label>
         <div class="col-md-6 col-sm-6 col-xs-12">
            {{ Form::select('status', ['1'=>'active','0'=>'inactive'],null, ['class' => 'form-control col-md-7 col-xs-12','required'=>'required']) }}
@@ -79,10 +73,10 @@ Menu Form
             
             <div class="row">
                 <div class="col-md-5 col-sm-5 col-xs-11">
-                   {{ Form::select('food[]', $food, $attaches[0]->id, ['class' => 'form-control col-md-7 col-xs-12', 'placeholder' => 'Choose Food','required'=>'required']) }}
+                   {{ Form::select('food[]', $food, $attaches[0]->id, ['class' => 'foods form-control col-md-7 col-xs-12', 'placeholder' => 'Choose Food','required'=>'required']) }}
                 </div>
                 <div class="col-md-1 col-sm-1 col-xs-1">
-                    {{ Form::number('quantity[]', $attaches[0]->pivot->quantity, ['class' => 'form-control', 'placeholder' => 'quantity','min'=>'1','id'=>'quantity']) }}
+                    {{ Form::number('quantity[]', $attaches[0]->pivot->quantity, ['class' => 'quantities form-control', 'placeholder' => 'qty','min'=>'1','id'=>'quantity1']) }}
                 </div>
             </div>
             <div id="food-select" class="row">
@@ -97,12 +91,12 @@ Menu Form
                         'food[]',
                         $food,
                          $attach->id, 
-                        ['class' => 'form-control col-md-6 col-xs-11', 
+                        ['class' => 'foods form-control col-md-6 col-xs-11', 
                         'placeholder' => 'Choose Food',
                         'required'=>'required']) }}
                     </div>
                 <div class="col-md-1 col-sm-1 col-xs-1" style="margin-top:10px;">
-                    {{ Form::number('quantity[]', $attach->pivot->quantity, ['class' => 'form-control', 'placeholder' => 'quantity','min'=>'1','id'=>'quantity']) }}
+                    {{ Form::number('quantity[]', $attach->pivot->quantity, ['class' => 'quantities form-control', 'placeholder' => 'qty','min'=>'1','id'=>'quantity']) }}
                 </div>
                 <button 
                     type="button" 
@@ -113,8 +107,6 @@ Menu Form
                 @endif
             @endforeach
             </div>
-            
-            
         </div>
         
         @else
@@ -122,10 +114,10 @@ Menu Form
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Foods</label>
             <div class="row">
                 <div class="col-md-5 col-sm-5 col-xs-11">
-                    {{ Form::select('food[]', $food, null, ['class' => 'form-control col-md-7 col-xs-12', 'placeholder' => 'Choose Food','required'=>'required']) }}
+                    {{ Form::select('food[]', $food, null, ['class' => 'foods form-control col-md-7 col-xs-12', 'placeholder' => 'Choose Food','required'=>'required','id'=>'food-sel1']) }}
                 </div>
                 <div class="col-md-1 col-sm-1 col-xs-1">
-                    {{ Form::number('quantity[]', null, ['class' => 'form-control', 'placeholder' => 'quantity','min'=>'1','id'=>'quantity']) }}
+                    {{ Form::number('quantity[]', 1, ['class' => 'quantities form-control', 'placeholder' => 'qty','min'=>'1','id'=>'quantity1']) }}
                 </div>
             <div id="food-select"></div>
             </div>
@@ -136,6 +128,12 @@ Menu Form
             <a class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" href="javascript:void(0);" id="add-more">add more</a>
         </div>
         
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Price</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+           {{ Form::number('price', null, ['class' => 'form-control col-md-7 col-xs-12', 'placeholder' => 'Price','required'=>'required','min'=>'0','id'=>'price']) }}
+        </div>
     </div>
     <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Description</label>
@@ -154,17 +152,69 @@ Menu Form
 @push('pageRelatedJs')
     <script>
         $(document).ready(function () {
+            $('#food-group').on('change', 'select', function(event) {
+                event.preventDefault();
+                // var id = $(this).attr('id');
+                // var lastChar = id.substr(8,id.length);
+                var foods = $('.foods');
+                var arrFood = [];
+                var quantities = $('.quantities');
+                var arrQty = [];
+                for(var i = 0; i < quantities.length; i++){
+                    arrQty.push($(quantities[i]).val());
+                }
+                for(var i = 0; i < foods.length; i++){
+                    arrFood.push($(foods[i]).val());
+                }
+                $.ajax({
+                    type: "POST",
+                    url: 'calculate',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "foods[]": arrFood,
+                        "quantities[]": arrQty
+                    },
+                    success: function(data) {
+                        $('#price').val(data);
+                    }
+                });
+            });
 
+            $('#food-group').on('keyup click', 'input', function(event) {
+                event.preventDefault();
+                var foods = $('.foods');
+                var arrFood = [];
+                var quantities = $('.quantities');
+                var arrQty = [];
+                for(var i = 0; i < quantities.length; i++){
+                    arrQty.push($(quantities[i]).val());
+                }
+                for(var i = 0; i < foods.length; i++){
+                    arrFood.push($(foods[i]).val());
+                }
+                $.ajax({
+                    type: "POST",
+                    url: 'calculate',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "foods[]": arrFood,
+                        "quantities[]": arrQty
+                    },
+                    success: function(data) {
+                        $('#price').val(data);
+                    }
+                });
+            });
             var num = {{ $model ? count($attaches) : 1 }};
             $('#add-more').click(function() {
                 num += 1;
                 $('#food-select').append(`
                 <div class="row" id="food`+num+`"> 
                     <div  class="col-md-5 col-sm-5 col-xs-11 col-md-offset-3" style="margin-top:10px;">
-                        {{ Form::select('food[]', $food, null, ['class' => 'form-control col-md-6 col-xs-11', 'placeholder' => 'Choose Food','required'=>'required']) }}
+                        {{ Form::select('food[]', $food, null, ['class' => 'foods form-control col-md-6 col-xs-11', 'placeholder' => 'Choose Food','required'=>'required','id'=>'food-sel`+num+`']) }}
                     </div>
                     <div class="col-md-1 col-sm-1 col-xs-1" style="margin-top:10px;">
-                        {{ Form::number('quantity[]', null, ['class' => 'form-control', 'placeholder' => 'quantity','min'=>'1','id'=>'quantity']) }}
+                        {{ Form::number('quantity[]', 1, ['class' => 'quantities form-control', 'placeholder' => 'qty','min'=>'1','id'=>'quantity`+num+`']) }}
                     </div>
                     <button 
                         type="button" 
@@ -211,6 +261,28 @@ Menu Form
         });
         function removeAppend(id) {
             $(id).html('');
+             var foods = $('.foods');
+                var arrFood = [];
+                var quantities = $('.quantities');
+                var arrQty = [];
+                for(var i = 0; i < quantities.length; i++){
+                    arrQty.push($(quantities[i]).val());
+                }
+                for(var i = 0; i < foods.length; i++){
+                    arrFood.push($(foods[i]).val());
+                }
+                $.ajax({
+                    type: "POST",
+                    url: 'calculate',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "foods[]": arrFood,
+                        "quantities[]": arrQty
+                    },
+                    success: function(data) {
+                        $('#price').val(data);
+                    }
+                });
         }
     </script>
 @endpush

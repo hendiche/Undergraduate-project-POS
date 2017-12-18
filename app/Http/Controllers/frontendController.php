@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Cart;
+use Auth;
 use App\Models\Menu;
 use App\Models\Food;
 use App\Models\Guest;
@@ -30,7 +31,10 @@ class frontendController extends Controller
             'name' => $menu->name,
             'price' => $menu->price,
             'qty' => 1,
-            'options' => ['cover' => $menu->cover]
+            'options' => [
+                'cover' => $menu->cover,
+                'type' => 'menu'
+                ]
         ]);
 
     	return redirect()->back()->with('message', 'Your Food has successfully added!!!');
@@ -191,5 +195,15 @@ class frontendController extends Controller
         ]);
 
         return redirect()->route('frontend.menu')->with('message', 'Your Custom Menu has successfully added to your cart!!!');
+    }
+
+    public function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return strtoupper($randomString);
     }
 }

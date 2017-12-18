@@ -41,6 +41,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('menu', Menu::class);
         Route::model('guest', Guest::class);
         Route::model('purchase', Purchase::class);
+        Route::model('dashboard', Purchase::class);
         Route::model('custom', Custom::class);
     }
 

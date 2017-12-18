@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\MasterController;
 use Auth;
 use App\Helpers\Enums\PurchaseStatus;
 use App\Helpers\Enums\PurchaseType;
@@ -63,7 +64,7 @@ class AdminController extends MasterController
     }
 
     public function dashboard() {
-    	return view('admin.dashboard');
+    	return view('admin.dashboard.index');
     }
 
     public function destroy($model)
@@ -178,5 +179,41 @@ class AdminController extends MasterController
     public function logout() {
     	Auth::logout();
     	return redirect()->route('frontend.home');
+    }
+
+    public function calculateCustom(Request $request) {
+        $total = 0;
+        if ($request->foods) {
+        	foreach ($request->foods as $key => $food) {
+            	$findFood = Custom::find($food);
+            	if ($findFood) {
+            	    $total += $findFood->total * $request->quantities[$key];
+            	}
+       		}
+        }
+        
+
+        if ($request->menus) {
+        	foreach ($request->menus as $key => $menu) {
+            	$findMenu = Menu::find($menu);
+            	if ($findMenu) {
+            	    $total += $findMenu->price * $request->menu_quantity[$key];
+            	}
+        	}
+        }
+        
+        return response($total);
+    }
+
+    public function calculateMenu(Request $request) {
+        $total = 0;
+        foreach ($request->menus as $key => $menu) {
+            $findMenu = Menu::find($menu);
+            if ($findMenu) {
+                $total += $findMenu->price * $request->quantities[$key];
+            }
+        }
+        
+        return response($total);
     }
 }

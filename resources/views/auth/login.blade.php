@@ -38,7 +38,7 @@
                                 @endif
                             </div>
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn" style="background-color: #17A827; color: #ffffff;">
                                     Login
