@@ -47,7 +47,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="{{ route('admin.dashboard') }}" class="site_title"><i class="fa fa-paw"></i> <span>Sutibun NP</span></a>
+              <a href="{{ route('dashboard.index') }}" class="site_title"><i class="fa fa-paw"></i> <span>Sutibun NP</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -71,7 +71,7 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-home"></i>Dashboard</a></li>
+                  <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-home"></i>Dashboard</a></li>
                   <li><a href="{{ route('user.index') }}"><i class="fa fa-user"></i>User</a></li>
                   <li><a href="{{ route('guest.index') }}"><i class="fa fa-user-circle"></i>Guest</a></li>
                   <li><a href="{{ route('purchase.index') }}"><i class="fa fa-money"></i>Purchase</a></li>
