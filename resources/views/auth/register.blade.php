@@ -1,99 +1,120 @@
 @extends('master.index')
 <style type="text/css">
+    #register:after {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.7;
+        background-image: url('{{ asset('images/Register.jpg')  }}');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    
+    #register .panel.panel-default {
+        border: 0;
+    }
 </style>
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <br>
-            <div class="panel panel-default">
-                <div class="panel-heading" style="background-color:#17A827;color: #ffffff; text-align: center; "><h3>Register</h3></div>
+<div id="register">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <br>
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color:#17A827;color: #ffffff; text-align: center; "><h3>Register</h3></div>
 
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
-                        {{ csrf_field() }}
+                    <div class="panel-body">
+                        <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+                            {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <div class="col-md-6 col-md-offset-3">
-                                <input id="name" type="text" class="form-control" name="name" placeholder="Name" value="{{ old('name') }}" required autofocus>
+                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <input id="name" type="text" class="form-control" name="name" placeholder="Name" value="{{ old('name') }}" required autofocus>
 
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
+                                    @if ($errors->has('name'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('name') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 
-                            <div class="col-md-6 col-md-offset-3">
-                                <input id="email" type="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}" required>
+                                <div class="col-md-10 col-md-offset-1">
+                                    <input id="email" type="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}" required>
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                                    @if ($errors->has('email'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                            <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
 
-                            <div class="col-md-6 col-md-offset-3">
-                                <input id="phone" type="number" class="form-control" placeholder="Phone" name="phone" value="{{ old('phone') }}" required>
+                                <div class="col-md-10 col-md-offset-1">
+                                    <input id="phone" type="number" class="form-control" placeholder="Phone" name="phone" value="{{ old('phone') }}" required>
 
-                                @if ($errors->has('phone'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('phone') }}</strong>
-                                    </span>
-                                @endif
+                                    @if ($errors->has('phone'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('phone') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+                            <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
 
-                            <div class="col-md-6 col-md-offset-3">
-                                <input id="address" type="address" class="form-control" placeholder="Address" name="address" value="{{ old('address') }}" required>
+                                <div class="col-md-10 col-md-offset-1">
+                                    <input id="address" type="address" class="form-control" placeholder="Address" name="address" value="{{ old('address') }}" required>
 
-                                @if ($errors->has('address'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('address') }}</strong>
-                                    </span>
-                                @endif
+                                    @if ($errors->has('address'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('address') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 
-                            <div class="col-md-6 col-md-offset-3">
-                                <input id="password" type="password" placeholder="Password" class="form-control" name="password" required>
+                                <div class="col-md-10 col-md-offset-1">
+                                    <input id="password" type="password" placeholder="Password" class="form-control" name="password" required>
 
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                                    @if ($errors->has('password'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
+                            <div class="form-group">
 
-                            <div class="col-md-6 col-md-offset-3">
-                                <input id="password-confirm" type="password" placeholder="Confirm Password" class="form-control" name="password_confirmation" required>
+                                <div class="col-md-10 col-md-offset-1">
+                                    <input id="password-confirm" type="password" placeholder="Confirm Password" class="form-control" name="password_confirmation" required>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-3">
-                                <button type="submit" class="btn btn-primary btn-block" style="background-color: #17A827;">
-                                    Register
-                                </button>
+                            <div class="form-group">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <button type="submit" class="btn btn-primary btn-block no-border-radius" style="background-color: #17A827;">
+                                        Register
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                    <div class="panel-footer" style="background-color: #17A827;"><br /></div>
                 </div>
-                <div class="panel-footer" style="background-color: #17A827;"></div>
             </div>
         </div>
     </div>

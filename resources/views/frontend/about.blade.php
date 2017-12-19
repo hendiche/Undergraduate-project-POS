@@ -44,6 +44,7 @@
     .top8{
     	width: 250px;
     	height: 250px;
+    	object-fit: cover;
     }
     .profil{
     	width: 100px;
@@ -67,8 +68,9 @@
     	background-color: #17A827;
     	color: #ffffff;
     }
-    #score .fa:hover{
+    #score .fa:hover {
     	color: #ffffff;
+    	text-decoration: none;
     }
 </style>
 @endpush
@@ -101,7 +103,7 @@
 				<h3>Vision</h3>
 				<p style="border-right-style: solid; border-right-color: #17A827; text-align: justify;">
 					Life is all about enjoying delicious food <br>
-					WHY NOT ENJOY NASI PADANG FROM SUTIBUN PADANG PENG ?!
+					WHY NOT ENJOY NASI PADANG FROM SUTIBUN NASI PADANG ?!
 				</p>
 				<h3>Mission</h3>
 				<p style="border-right-style: solid; border-right-color: #17A827; text-align: justify;">
@@ -120,27 +122,27 @@
 		<div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-1">
 			<div class="col-md-2 col-sm-12 col-xs-12">
 				<img src="images/ab1.png" class="profil">
-				<h6>Name : Steven AT</h6>
-				<h6>Job  : Report/Document</h6>
+				<h6>Name : Steven AT - 1431072</h6>
+				<h6>Job  : Tester</h6>
 			</div>
 			<div class="col-md-2 col-sm-12 col-xs-12">
 				<img src="images/ab2.png" class="profil">
-				<h6>Name : Antoni</h6>
+				<h6>Name : Antoni - 1431017</h6>
 				<h6>Job  : Designer</h6>
 			</div>
 			<div class="col-md-2 col-sm-12 col-xs-12">
 				<img src="images/ab5.png" class="profil">
-				<h6>Name : Yannisto</h6>
+				<h6>Name : Yannisto - 1431086</h6>
 				<h6>Job  : Project Manager</h6>
 			</div>
 			<div class="col-md-2 col-sm-12 col-xs-12">
 				<img src="images/ab3.png" class="profil">
-				<h6>Name : Harsanto</h6>
+				<h6>Name : Harsanto - 1431083</h6>
 				<h6>Job  : Backend</h6>
 			</div>
 			<div class="col-md-2 col-sm-12 col-xs-12">
 				<img src="images/ab4.png" class="profil">
-				<h6>Name : Hendiche</h6>
+				<h6>Name : Hendiche - 1431055</h6>
 				<h6>Job  : Frontend</h6>
 			</div>
 		</div>
@@ -196,22 +198,22 @@
 		<div class="col-md-12 col-sm-12 col-xs-12 text-center">
 			<br>
 			<div class="col-md-3 col-sm-12 col-xs-12">
-				<a href="#" class="fa fa-users facility"></a>
+				<a class="fa fa-users facility"></a>
 				<h5>10</h5>
 				<h5>Employee</h5>
 			</div>
 			<div class="col-md-3 col-sm-12 col-xs-12">
-				<a href="#" class="fa fa-trophy facility"></a>
+				<a class="fa fa-trophy facility"></a>
 				<h5>100</h5>
 				<h5>Awards</h5>
 			</div>
 			<div class="col-md-3 col-sm-12 col-xs-12">
-				<a href="#" class="fa fa-thumbs-o-up facility"></a>
+				<a class="fa fa-thumbs-o-up facility"></a>
 				<h5>1.000.000</h5>
 				<h5>Customers like</h5>
 			</div>
 			<div class="col-md-3 col-sm-12 col-xs-12">
-				<a href="#" class="fa fa-sitemap facility"></a>
+				<a class="fa fa-sitemap facility"></a>
 				<h5>2</h5>
 				<h5>Different Locations</h5>
 			</div>
