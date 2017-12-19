@@ -199,7 +199,7 @@ class AdminController extends MasterController
     }
     public function logout() {
     	Auth::logout();
-    	return redirect()->route('frontend.home');
+    	return redirect('/');
     }
 
     public function calculateCustom(Request $request) {

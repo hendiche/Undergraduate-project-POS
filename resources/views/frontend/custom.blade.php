@@ -31,6 +31,12 @@
 	div.alert a {
 		font-size: 30px;
 	}
+	.custom-img {
+		height: 68px;
+		width: 100px;
+		object-fit: cover;
+		margin-right: 10px;
+	}
 </style>
 @endpush
 @section('content')
@@ -61,6 +67,7 @@
 									</div>
 									<input type="text" name="foods[{{$count}}][qty]" value="1" id="custom{{$count}}" readonly>
 									<input type="hidden" name="foods[{{$count}}][value]" value="{{ $rice->id }}">
+									<img src="{{ $rice->cover }}" alt="food image" class="custom-img mpsi-popup-img hvr-grow" onclick="showPopupImg(this)" />
 								</div>
 								<label class="menu-label"><h4>{{ $rice->name }} - Rp{{ number_format($rice->price, 0, ',', '.') }}</h4></label>
 							</div>
@@ -80,6 +87,7 @@
 									</div>
 									<input type="text" name="foods[{{$count}}][qty]" value="0" id="custom{{$count}}" readonly>
 									<input type="hidden" name="foods[{{$count}}][value]" value="{{ $beef->id }}">
+									<img src="{{ $beef->cover }}" alt="food image" class="custom-img mpsi-popup-img hvr-grow" onclick="showPopupImg(this)" />
 								</div>
 								<label class="menu-label"><h4>{{ $beef->name }} - Rp{{ number_format($beef->price, 0, ',', '.') }}</h4></label>
 							</div>
@@ -99,6 +107,7 @@
 									</div>
 									<input type="text" name="foods[{{$count}}][qty]" value="0" id="custom{{$count}}" readonly>
 									<input type="hidden" name="foods[{{$count}}][value]" value="{{ $chick->id }}">
+									<img src="{{ $chick->cover }}" alt="food image" class="custom-img mpsi-popup-img hvr-grow" onclick="showPopupImg(this)" />
 								</div>
 								<label class="menu-label"><h4>{{ $chick->name }} - Rp{{ number_format($chick->price, 0, ',', '.') }}</h4></label>
 							</div>
@@ -118,6 +127,7 @@
 									</div>
 									<input type="text" name="foods[{{$count}}][qty]" value="0" id="custom{{$count}}" readonly>
 									<input type="hidden" name="foods[{{$count}}][value]" value="{{ $seafood->id }}">
+									<img src="{{ $seafood->cover }}" alt="food image" class="custom-img mpsi-popup-img hvr-grow" onclick="showPopupImg(this)" />
 								</div>
 								<label class="menu-label"><h4>{{ $seafood->name }} - Rp{{ number_format($seafood->price, 0, ',', '.') }}</h4></label>
 							</div>
@@ -137,6 +147,7 @@
 									</div>
 									<input type="text" name="foods[{{$count}}][qty]" value="0" id="custom{{$count}}" readonly>
 									<input type="hidden" name="foods[{{$count}}][value]" value="{{ $vege->id }}">
+									<img src="{{ $vege->cover }}" alt="food image" class="custom-img mpsi-popup-img hvr-grow" onclick="showPopupImg(this)" />
 								</div>
 								<label class="menu-label"><h4>{{ $vege->name }} - Rp{{ number_format($vege->price, 0, ',', '.') }}</h4></label>
 							</div>
@@ -156,6 +167,7 @@
 									</div>
 									<input type="text" name="foods[{{$count}}][qty]" value="0" id="custom{{$count}}" readonly>
 									<input type="hidden" name="foods[{{$count}}][value]" value="{{ $side->id }}">
+									<img src="{{ $side->cover }}" alt="food image" class="custom-img mpsi-popup-img hvr-grow" onclick="showPopupImg(this)" />
 								</div>
 								<label class="menu-label"><h4>{{ $side->name }} - Rp{{ number_format($side->price, 0, ',', '.') }}</h4></label>
 							</div>
