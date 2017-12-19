@@ -51,6 +51,7 @@
     	height: 100px;
     	border-radius: 50%;
     	background-color: #17A827;
+    	object-fit: contain;
     }
     .facility{
     	padding: 20px; 
