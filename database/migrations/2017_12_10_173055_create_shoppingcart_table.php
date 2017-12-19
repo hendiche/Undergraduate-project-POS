@@ -14,7 +14,7 @@ class CreateShoppingcartTable extends Migration
         Schema::create(config('cart.database.table'), function (Blueprint $table) {
             $table->string('identifier');
             $table->string('instance');
-            $table->longText('content',1000);
+            $table->longText('content',767);
             $table->nullableTimestamps();
 
             $table->primary(['identifier', 'instance']);
